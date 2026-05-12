@@ -13,12 +13,11 @@ function renderCalendar(){
   calendarGrid.innerHTML = '';
 
   const year = currentDate.getFullYear();
-
   const month = currentDate.getMonth();
 
   const firstDay = new Date(year, month, 1).getDay();
-
   const lastDate = new Date(year, month + 1, 0).getDate();
+  const prevLastDate = new Date(year, month, 0).getDate();
 
   const monthNames = [
     'Janeiro',
@@ -38,31 +37,41 @@ function renderCalendar(){
   monthYear.textContent =
   `${monthNames[month]} ${year}`;
 
-  for(let i = 0; i < firstDay; i++){
+  for(let i = firstDay; i > 0; i--) {
+    const dayElement = document.createElement("div");
 
-    const empty = document.createElement('div');
+    dayElement.classList.add("day", "other-month");
+    dayElement.textContent = String(prevLastDate - i + 1).padStart(2, "0");
 
-    calendarGrid.appendChild(empty);
+    calendarGrid.appendChild(dayElement);
   }
 
-  for(let day = 1; day <= lastDate; day++){
+  for (let day = 1; day <= lastDate; day++) {
+    const dayElement = document.createElement('div');
 
-    const dayElement =
-    document.createElement('div');
-
-    dayElement.classList.add('day');
-
-    dayElement.textContent = day;
+    dayElement.classList.add('day', 'current-month');
+    dayElement.textContent = String(day).padStart(2, '0');
 
     dayElement.addEventListener('click', () => {
-
       dayElement.classList.toggle('selected');
-
     });
 
     calendarGrid.appendChild(dayElement);
   }
+
+  const totalCells = firstDay + lastDate;
+  const nextDays = 42 - totalCells;
+
+  for (let day = 1; day <= nextDays; day++) {
+    const dayElement = document.createElement('div');
+
+    dayElement.classList.add('day', 'other-month');
+    dayElement.textContent = String(day).padStart(2, '0');
+
+    calendarGrid.appendChild(dayElement);
+  }
 }
+
 
 prevMonth.addEventListener('click', () => {
 

@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="./css/dashboard.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./js/dashboard.js" defer></script>
 
 </head>
 
@@ -32,10 +32,10 @@
 
     <nav class="menu">
 
-      <a href="#">Avisos/Recomendações</a>
-      <a href="#">Sugestões</a>
-      <a href="#">Gráficos</a>
+      <a href="#">Menu</a>
+      <a href="#">Calendário</a>
       <a href="#">Análises</a>
+      <a href="#">Recomendações</a>
 
     </nav>
 
@@ -74,258 +74,101 @@
 
   <main class="dashboard">
 
-    <section class="left-column">
+    <section class="dashboard-painel-esquerdo">
 
-      <div class="status-card">
-
-  <h3>🌸 Fase Atual:</h3>
-
-  <p id="faseAtual">
-    Fo0licular
-  </p>
-
-  <h3>😊 Humor:</h3>
-
-  <div class="mood-options">
-
-  <button class="mood-btn" data-humor="Feliz">
-    😊
-  </button>
-
-  <button class="mood-btn" data-humor="Animada">
-    🤩
-  </button>
-
-  <button class="mood-btn" data-humor="Cansada">
-    😴
-  </button>
-
-  <button class="mood-btn" data-humor="Triste">
-    😢
-  </button>
-
-  <button class="mood-btn" data-humor="Irritada">
-    😡
-  </button>
-
-</div>
-
-<p class="current-status">
-
-  Humor Atual:
-  <span id="currentMood">
-    Nenhum
-  </span>
-
-</p>
-
-  <h3>⚡ Energia:</h3>
-
-  <div class="energy-options">
-
-    <button class="energy-btn" data-energy="Alta">
-      🔋
-    </button>
-
-    <button class="energy-btn" data-energy="Média">
-      ⚡
-    </button>
-
-    <button class="energy-btn" data-energy="Baixa">
-      🪫
-    </button>
-
-  </div>
-
-<p class="current-status">
-
-  Humor Atual:
-  <span id="currentEnergy">
-    Nenhum
-  </span>
-
-  <h3>💡 Sugestão:</h3>
-
-  <span id="suggestionText">
-
-    Aproveite para iniciar projetos
-    ou estudar.
-
-  </span>
-
-</div>
-
-      <div class="insight-card">
-          <div class="card-header">
-              <h2>Insights do Ciclo</h2>
-              <button class="options-btn-light" onclick="abrirModal()">⋮</button>
-          </div>
-          <div class="insight-content" id="textoInsight">
-              Seu ciclo tem sido muito regular <strong>(28-29 dias)</strong> nos últimos 6 meses.
-          </div>
-          <a href="#">Leia Mais..</a>
+      <div class="cycle-circle">        
+        <h2>Menstruação:</h2>
+        <strong>3º dia</strong>
+        <button>Editar Menstruação</button> 
       </div>
 
-      <div id="modalParametros" class="modal-overlay">
-          <div class="modal-flower flower1"><img src="./assets/images/icone.png"></div>
-          <div class="modal-flower flower2"><img src="./assets/images/icone.png"></div>
-          <div class="modal-flower flower3"><img src="./assets/images/icone.png"></div>
+      <section class="conteudo-diario">
+        <h2>Meu conteúdo diário</h2>
 
-          <div class="modal-card">
-              <button class="modal-close" onclick="fecharModal()">&times;</button>
-              <h2>Configurar Ciclo</h2>
-              <p class="modal-subtitle">Ajuste os dados médios e o mês de referência.</p>
-
-              <div class="form-group-modal">
-                  <label>Mês de referência</label>
-                  <input type="month" id="mesReferencia">
-              </div>
-              <div class="form-group-modal">
-                  <label>Duração média do ciclo</label>
-                  <input type="number" id="cicloInput" placeholder="Ex: 28 dias">
-              </div>
-              <div class="form-group-modal">
-                  <label>Duração da fase lútea</label>
-                  <input type="number" id="luteaInput" placeholder="Ex: 14 dias">
-              </div>
-              <button class="btn-save-modal" onclick="salvarParametros()">Salvar Alterações</button>
-          </div>
-      </div>
-
-    </section>
-
-    <section class="center-column">
-
-      <div class="calendar-card">
-
-  <div class="calendar-header">
-
-    <h2>Calendário</h2>
-
-    <div class="month-control">
-
-      <button id="prevMonth">‹</button>
-
-      <span id="monthYear"></span>
-
-      <button id="nextMonth">›</button>
-
-    </div>
-
-  </div>
-
-  <div class="weekdays">
-
-    <span>Dom</span>
-    <span>Seg</span>
-    <span>Ter</span>
-    <span>Qua</span>
-    <span>Qui</span>
-    <span>Sex</span>
-    <span>Sáb</span>
-
-  </div>
-
-  <div class="calendar-grid" id="calendarGrid"></div>
-
-</div>
-
-      <div class="graph-card">
-
-        <canvas id="cycleChart"></canvas>
-
-      </div>
-
-    </section>
-
-    <section class="right-column">
-
-      <div class="alert-card">
-
-        <div class="alert-icon">💧</div>
-
-        <div>
-
-          <h3>Lembrete de Água</h3>
-
-          <p>(2 Litros hoje)</p>
-
-        </div>
-
-      </div>
-
-      <div class="alert-card">
-
-        <div class="alert-icon">💊</div>
-
-        <div>
-
-          <h3>Pílula Tomada</h3>
-
-        </div>
-
-      </div>
-
-      <div class="alert-card">
-
-        <div class="alert-icon">📅</div>
-
-        <div>
-
-          <h3>Consulta com o Ginecologista</h3>
-
-          <p>em 2 dias</p>
-
-        </div>
-
-      </div>
-
-      <div class="alert-card big-alert">
-
-        <div class="alert-icon">❗</div>
-
-        <div>
-
-          <h3>Alerta de Insight</h3>
-
+        <article class="quadro-fase-ciclo">
+          <h3>Fase atual do ciclo: Menstrual</h3>
           <p>
-            Notamos um padrão de cólicas leves antes da sua menstruação.
+            Ainda na fase Menstrual. O fluxo pode estar mais leve, mas a energia continua baixa.
           </p>
+          <button>Ver recomendações</button>
+        </article>
 
+        <div class="mini-cards">
+          <article>
+            <h3>Registre seus Sintomas</h3>
+            <button class="botao-sintomas"></button>
+          </article>
+          <article>
+            <h3>Chance de gravidez de hoje:</h3>
+            <p>Baixa probabilidade</p>
+            <button>Ver resumo</button>
+          </article>
+          <article>
+            <h3>O seu método contraceptivo é:</h3>
+            <p>Pílula</p>
+            <span>08:00h</span>
+          </article>
         </div>
-
-      </div>
-
+      </section>
     </section>
 
-  </main>
-
-  <!-- JS -->
-  <script src="./js/dashboard.js"></script>
-
-  <!-- Testando -->
-   <div id="modalParametros" class="modal-overlay">
-    <div class="modal-card">
-        <div class="modal-header">
-            <h3>Ajustar Ciclo</h3>
-            <button class="close-btn" onclick="fecharModal()">&times;</button>
-        </div>
+    <section class="dashboard-painel-direito">
+      
+      <section class="calendar-card">
         
-        <div class="modal-body">
-            <div class="form-group-dash">
-                <label for="cicloInput">Duração média do ciclo (dias)</label>
-                <input type="number" id="cicloInput" placeholder="Ex: 28" min="20" max="45">
-            </div>
+        <header class="calendar-header">
+          <h2>Calendário</h2>
 
-            <div class="form-group-dash">
-                <label for="luteaInput">Duração da fase lútea (dias)</label>
-                <input type="number" id="luteaInput" placeholder="Ex: 14" min="10" max="16">
-            </div>
+          <div class="controle-mes-ano">
 
-            <button class="save-modal-btn" onclick="salvarParametros()">Salvar Alterações</button>
+            <button id="prevMonth" aria-label="Mês anterior">
+              <img src="./assets/icons/seta_esquerda.png">
+            </button>
+
+            <strong id="monthYear">março 2026</strong>
+
+            <button id="nextMonth" aria-label="Mês seguinte">
+              <img id="seta_direita" src="./assets/icons/seta_esquerda.png">
+            </button>
+
+          </div>
+          <button class="options-button" aria-label="Opções do calendário">
+            <img src="./assets/icons/tres_pontos.png">
+          </button>  
+        </header>
+
+        <div class="weekdays">
+          <span>dom</span>
+          <span>seg</span>
+          <span>ter</span>
+          <span>qua</span>
+          <span>qui</span>
+          <span>sex</span>
+          <span>sáb</span>
         </div>
-    </div>
-</div>
 
+        <div class="calendar-grid" id="calendarGrid">
+          <!-- será feito em JS posteriormente -->
+        </div>
+
+      </section>
+
+      <section class="container-lembretes">
+        <h2>Lembretes</h2>
+
+        <article class="card-lembrete">
+          <h3>Água</h3>
+          <strong>0</strong>
+          <span>/ 2,25 L</span>
+
+          <div class="lembrete-agua-mais-menos">
+            <button>-</button>
+            <button>+</button>
+          </div>
+
+        </article>
+      </section>
+    </section>
+  </main>  
 </body>
-</html>
+</html>  

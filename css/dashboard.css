@@ -1,3 +1,14 @@
+:root {
+  --pink-main: #FF7093;
+  --pink-soft: #ffc0cb;
+  --pink-light: #fff1f5;
+  --pink-border: #ff6f8f;
+  --text-main: #8b4d55;
+  --text-dark: #524C4E;
+  --card-bg: rgba(255, 246, 249, 0.82);
+  --shadow-soft: 0 12px 30px rgba(120, 60, 80, 0.16);
+}
+
 *{
   margin:0;
   padding:0;
@@ -10,7 +21,7 @@ body{
   overflow-x:hidden;
 }
 
-.navbar{
+.navbar {
 
   width:100%;
   height:80px;
@@ -43,10 +54,10 @@ body{
   width:42px;
 }
 
-.menu{
+.menu {
 
-  display:flex;
-  gap:40px;
+  display: flex;
+  gap: 40px;
 }
 
 .menu a{
@@ -75,36 +86,159 @@ body{
   border:2px solid white;
 }
 
-.dashboard{
-
-  padding:25px;
-
-  display:grid;
-
-  grid-template-columns:
-  280px
-  1fr
-  300px;
-
-  gap:25px;
+.dashboard {
+  min-height: calc(100vh - 58px);
+  padding: 32px 64px;
+  display: grid;
+  grid-template-columns: 300px minmax(420px, 1fr) 220px;
+  gap: 56px;
+  align-items: start;
 }
 
 .status-card,
 .insight-card,
 .calendar-card,
 .graph-card,
-.alert-card{
-
-  background:#f7eef0;
-
-  border-radius:25px;
-
-  padding:20px;
-
-  box-shadow:
-  0 8px 25px rgba(0,0,0,0.08);
-
+.alert-card {
+  background: var(--pink-light);
+  color: var(--text-main);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
   animation:fadeUp 0.8s ease;
+}
+
+.dashboard-painel-direito {
+  width: 100%;
+  max-width: 760px;
+  justify-self: end;
+}
+
+.dashboard-painel-esquerdo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.cycle-circle {
+  width: 435px;
+  height: 435px;
+  border-radius: 50%;
+  background-image: url("../assets/icons/circulo-rosa.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}  
+
+.cycle-circle img {
+  width: 412px;
+  height: 412px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cycle-circle button {
+  border: 1px solid white;
+  border-radius: 15px;
+}
+
+.controle-mes-ano {
+  display: flex;
+  gap: 15px;
+}
+
+.controle-mes-ano button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.controle-mes-ano button img {
+  width: 25px;
+  height: 25px;
+  display: block;
+}
+
+#seta_direita {
+  transform: scaleX(-1);
+}
+
+.options-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.options-button img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  display: block;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+
+  margin-top: 8px;
+  margin-bottom: 8px;
+
+  color: var(--text-dark);
+  font-size: 2.2rem;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.weekdays span {
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.7rem;
+}
+
+.weekdays span:nth-child(odd) {
+  color: var(--text-dark);
+}
+
+.weekdays span:nth-child(even) {
+  color: var(--pink-main);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.current-month {
+  background: var(--pink-soft);
+  color: var(--text-main);
 }
 
 @keyframes fadeUp{
@@ -230,64 +364,18 @@ body{
   margin-bottom:20px;
 }
 
-.month-control{
-
-  display:flex;
-  align-items:center;
-  gap:15px;
-
-  font-size:2rem;
-  font-weight:700;
-}
-
-.month-control button{
-
-  border:none;
-  background:none;
-
-  font-size:2rem;
-
-  cursor:pointer;
-}
-
-.weekdays,
-.calendar-grid{
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(7,1fr);
-
-  gap:10px;
-}
-
-.weekdays{
-
-  margin-bottom:15px;
-
-  font-size:1rem;
-
-  color:#666;
-
-  font-weight:600;
-}
-
 .day{
 
-  height:55px;
-
-  background:#f6c1d6;
-
-  border-radius:12px;
-
+  height: 32px;
+  background: var(--pink-soft);
+  border-radius: 6px;
   display:flex;
   justify-content:center;
   align-items:center;
-
-  font-size:1rem;
-
+  color: var(--text-main);
+  font-weight: 600;
+  font-size:1.4rem;
   cursor:pointer;
-
   transition:0.3s;
 }
 
@@ -305,6 +393,12 @@ body{
 
   box-shadow:
   0 5px 15px rgba(255,79,141,0.4);
+}
+
+.other-month {
+  background: transparent;
+  color: #b9a6ad;
+  background-color: var(--pink-light);
 }
 
 .graph-card{
