@@ -1,0 +1,228 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+:root{
+  --rosa:#b26b6b;
+  --rosaClaro:#f7dede;
+  --rosaMedio:#f3c9d7;
+  --lilas:#eccff3;
+  --branco:#fff;
+}
+
+body{
+  min-height:100vh;
+  overflow:hidden;
+
+  background:linear-gradient(
+    90deg,
+    #f7ecec 0%,
+    #f7ecec 50%,
+    #efd3ef 100%
+  );
+}
+
+/* NAVBAR */
+
+.navbar{
+  width:100%;
+  height:80px;
+
+  background:#F5D9D5;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 50px;
+
+  border-bottom-left-radius:12px;
+  border-bottom-right-radius:12px;
+
+  position:relative;
+  z-index:10;
+
+   box-shadow:
+  0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* LOGO */
+
+.logo{
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  color:#8F5353;
+
+  font-size:2rem;
+  font-weight:700;
+}
+
+.logo img{
+  width:42px;
+}
+
+/* MENU */
+
+.menu{
+  display:flex;
+  align-items:center;
+  gap:50px;
+}
+
+.menu a{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  text-decoration:none;
+  color:var(--rosa);
+
+  font-size:13px;
+
+  transition:0.3s;
+}
+
+.menu a i{
+  font-size:22px;
+  margin-bottom:4px;
+}
+
+.menu a:hover{
+  transform:translateY(-2px);
+}
+
+/* PERFIL */
+
+.perfil{
+  display:flex;
+  align-items:center;
+  gap:20px;
+
+  color:var(--rosa);
+}
+
+.perfil i{
+  font-size:20px;
+  cursor:pointer;
+}
+
+.usuario{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.usuario img{
+  width:40px;
+  height:40px;
+
+  border-radius:50%;
+
+  border:2px solid white;
+}
+
+.usuario span{
+  font-weight:600;
+}
+
+/* BACKGROUND */
+
+.background{
+  width:100%;
+  height:calc(100vh - 70px);
+
+  position:relative;
+  overflow:hidden;
+}
+
+/* FLORES */
+
+.flor{
+  position:absolute;
+
+  background:rgba(244, 192, 210, 0.35);
+
+  border-radius:50%;
+}
+
+/* pétalas */
+
+.flor::before,
+.flor::after{
+  content:"";
+
+  position:absolute;
+
+  width:100%;
+  height:100%;
+
+  background:inherit;
+
+  border-radius:50%;
+}
+
+/* flor base */
+
+.flor1{
+  width:180px;
+  height:180px;
+
+  bottom:-40px;
+  left:-40px;
+}
+
+.flor2{
+  width:160px;
+  height:160px;
+
+  bottom:-30px;
+  right:-20px;
+}
+
+.flor3{
+  width:110px;
+  height:110px;
+
+  top:120px;
+  left:180px;
+}
+
+.flor4{
+  width:130px;
+  height:130px;
+
+  top:250px;
+  right:180px;
+}
+
+.flor5{
+  width:90px;
+  height:90px;
+
+  top:120px;
+  right:40%;
+}
+
+.flor6{
+  width:70px;
+  height:70px;
+
+  bottom:120px;
+  left:40%;
+}
+
+/* EFEITO FLOR */
+
+.flor::before{
+  transform:translateX(-40%);
+}
+
+.flor::after{
+  transform:translateY(-40%);
+}
