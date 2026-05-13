@@ -1,0 +1,130 @@
+:root {
+    --rosa: #b26b6b;
+    --rosaClaro: #f7dede;
+    --rosaMedio: #f3c9d7;
+    --branco: #fff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#efe2de;
+    font-family:'Poppins', sans-serif;
+}
+
+/* CONTEÚDO */
+
+.container{
+    padding:40px;
+}
+
+.titulo-page{
+    margin-bottom:30px;
+}
+
+.titulo-page h1{
+    color:var(--rosa);
+    font-size:2rem;
+    margin-bottom:8px;
+}
+
+.titulo-page p{
+    color:#8b6b6b;
+}
+
+/* CARDS */
+
+.card{
+    background:#fff7f9;
+    border-radius:24px;
+    padding:25px;
+    margin-bottom:25px;
+
+    box-shadow:
+    0 6px 18px rgba(0,0,0,0.08);
+}
+
+.card h2{
+    color:#ff4f8b;
+    margin-bottom:20px;
+}
+
+/* CAMPOS */
+
+.campo{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#7c5a5a;
+    font-weight:600;
+}
+
+input,
+select{
+    width:100%;
+    padding:14px;
+
+    border:none;
+    border-radius:14px;
+
+    background:#f8e6ea;
+
+    font-size:1rem;
+}
+
+/* BOTÕES */
+
+.card button{
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+    border-radius:16px;
+
+    background:#ff6f9f;
+
+    color:white;
+
+    font-size:1rem;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.card button:hover{
+    background:#f7568d;
+    transform:translateY(-2px);
+}
+
+/* HISTÓRICO */
+
+.registro,
+.card-historico{
+    background:white;
+
+    border-radius:16px;
+
+    padding:15px;
+
+    margin-top:12px;
+
+    border:1px solid #f3d5df;
+}
+
+/* PREVISÃO */
+
+.previsao-box{
+    font-size:1.1rem;
+    color:#7b4d58;
+    font-weight:600;
+}
