@@ -2,7 +2,7 @@
   --pink-main: #FF7093;
   --pink-soft: #ffc0cb;
   --pink-light: #fff1f5;
-  --pink-border: #ff6f8f;
+  --border: #F51C1C;
   --rosa:#b26b6b;
   --rosaClaro:#f7dede;
   --rosaMedio:#f3c9d7;
@@ -148,22 +148,13 @@ body{
   font-weight:600;
 }
 
-/* .dashboard {
-  min-height: calc(100vh - 58px);
-  padding: 32px 64px;
-  display: grid;
-  grid-template-columns: 300px minmax(420px, 1fr) 220px;
-  gap: 32px;
-  
-} */
-
 .dashboard {
   padding: 32px 40px;
   align-items: start;
   display:grid;
   justify-content: center;
   grid-template-columns: 420px 760px;
-  gap: 48px;
+  gap: 150px;
 }
 
 .status-card,
@@ -180,9 +171,15 @@ body{
 }
 
 .dashboard-painel-direito {
+  margin-top: 5vh;
   width: 100%;
-  max-width: 760px;
+  height: 120%;
+  max-width: 800px;
+  max-height: 600px;
   justify-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
 
 .dashboard-painel-esquerdo {
@@ -190,7 +187,6 @@ body{
   flex-direction: column;
   align-items: center;
 }
-
 
 .cycle-circle {
   width: 435px;
@@ -248,6 +244,137 @@ body{
   gap: 15px;
 }
 
+.conteudo-diario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+}
+
+.conteudo-diario h2 {
+  font-family: var(--inter-font);
+  color: #8F5353;
+  font-size: 2rem;
+}
+
+.botao-rosa {
+  margin-top: 20px;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 8px 10px rgba(80, 40, 55, 0.35);
+  font-family: var(--inter-font);
+  font-weight: 700;
+  padding: 8px 18px;
+  color: var(--branco);
+  cursor: pointer;
+  font-size: 0.9rem;
+  background-color: var(--pink-main);
+}
+
+.quadro-fase-ciclo {
+  background-color: var(--branco);
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 550px;
+  width: 110%; 
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.quadro-fase-ciclo h3 {
+  justify-self: center;
+  color: black;
+}
+
+.quadro-fase-ciclo p {
+  color: var(--text-main);
+  font-weight: 600;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  width: 110%;
+}
+
+.mini-cards article {
+  background-color: var(--branco);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: medium;
+}
+
+.mini-cards article h3 {
+  text-align: center;
+}
+
+.mini-cards article p {
+  font-family: var(--inter-font);
+  color: var(--text-main);
+  font-weight: 600;
+  text-align: center;
+}
+
+.botao-sintomas {
+  width: 56px;
+  height: 56px;
+
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  cursor: pointer;
+  box-shadow: 0 8px 14px rgba(80, 40, 55, 0.25);
+}
+
+.botao-sintomas img {
+  width: 100%;
+  display: block;
+  background: transparent;
+}
+
+.container-aviso-horario {
+  display: flex;
+  color: var(--text-main);
+  font-weight: 600;
+  gap: 10px;
+}
+
+.container-lembretes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.container-lembretes-cards {
+  display: flex;
+}
+
+.container-lembretes h2 {
+  font-family: var(--inter-font);
+  color: #8F5353;
+  font-size: 2rem;
+}
+
 .controle-mes-ano button {
   border: none;
   background: transparent;
@@ -292,6 +419,61 @@ body{
   height: 25px;
   object-fit: contain;
   display: block;
+}
+
+.card-lembrete {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  gap: 12px;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: medium;
+  border: 1px solid var(--border);
+  background-color: var(--branco);
+}
+
+.container-lembrete-agua {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  
+}
+
+.container-meta-agua {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+.container-meta-agua strong {
+  font-size: 3rem;
+  line-height: 1;
+  color: #8F5353;
+}
+
+.container-meta-agua span {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #8F5353;
+}
+
+.botoes-lembrete-agua {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.botoes-lembrete-agua button {
+  border: none;
+  background-color: transparent;
+
 }
 
 .weekdays {

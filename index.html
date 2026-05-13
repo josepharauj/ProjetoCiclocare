@@ -122,23 +122,27 @@
           <p>
             Ainda na fase Menstrual. O fluxo pode estar mais leve, mas a energia continua baixa.
           </p>
-          <button>Ver recomendações</button>
+          <button class="botao-rosa">Ver recomendações</button>
         </article>
 
         <div class="mini-cards">
           <article>
             <h3>Registre seus Sintomas</h3>
-            <button class="botao-sintomas"></button>
+            <button class="botao-sintomas">
+              <img src="./assets/icons/botao_adicionar.png">
+            </button>
           </article>
           <article>
             <h3>Chance de gravidez de hoje:</h3>
             <p>Baixa probabilidade</p>
-            <button>Ver resumo</button>
+            <button class="botao-rosa">Ver resumo</button>
           </article>
           <article>
             <h3>O seu método contraceptivo é:</h3>
             <p>Pílula</p>
-            <span>08:00h</span>
+            <div class="container-aviso-horario">
+              <img src="./assets/icons/icone_relogio.png">
+              <span>08:00h</span>
           </article>
         </div>
       </section>
@@ -188,17 +192,26 @@
       <section class="container-lembretes">
         <h2>Lembretes</h2>
 
-        <article class="card-lembrete">
-          <h3>Água</h3>
-          <strong>0</strong>
-          <span>/ 2,25 L</span>
-
-          <div class="lembrete-agua-mais-menos">
-            <button>-</button>
-            <button>+</button>
-          </div>
-
-        </article>
+        <div class="container-lembretes-cards">
+          <article class="card-lembrete">
+            <div class="container-lembrete-agua">
+              <img src="./assets/icons/gota_agua.png">
+              <h3>Água</h3>
+            </div>
+            <div class="container-meta-agua">  
+              <strong>0</strong>
+              <span>/ 2,25 L</span>
+            </div>
+            <div class="botoes-lembrete-agua">
+              <button>
+                <img src="./assets/icons/botao_menos.png">
+              </button>
+              <button>
+                <img src="./assets/icons/botao_mais.png">
+              </button>
+            </div>
+          </article>
+        </div>  
       </section>
     </section>
   </main>  
