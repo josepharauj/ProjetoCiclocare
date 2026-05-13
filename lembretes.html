@@ -15,8 +15,7 @@
   <link rel="stylesheet" href="./css/lembretes.css">
 
   <!-- Ícones -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
@@ -25,7 +24,7 @@
   <!-- NAVBAR -->
   <header class="navbar">
 
-   <div class="logo">
+    <div class="logo">
 
       <img src="./assets/images/icone.png" alt="Logo">
 
@@ -33,136 +32,198 @@
 
     </div>
 
-  <!-- MENU -->
-<nav class="menu">
+    <!-- MENU -->
+    <nav class="menu">
 
-  <!-- DROPDOWN -->
-  <div class="dropdown">
+      <!-- DROPDOWN -->
+      <div class="dropdown">
 
-    <button class="dropdown-btn">
+        <button class="dropdown-btn">
 
-      <i class="fa-solid fa-bars"></i>
-      <span>Menu</span>
+          <i class="fa-solid fa-bars"></i>
+          <span>Menu</span>
 
-    </button>
+        </button>
 
-    <div class="dropdown-content">
+        <div class="dropdown-content">
 
-      <a href="registrodesintomas.html">Registros de Sintomas</a>
+          <a href="registrodesintomas.html">Registros de Sintomas</a>
 
-      <a href="lembretes.html">Lembretes</a>
+          <a href="lembretes.html">Lembretes</a>
 
-      <a href="alarmes.html">Alarmes</a>
+          <a href="alarmes.html">Alarmes</a>
+
+        </div>
+
+      </div>
+
+      <!-- LINKS-->
+
+      <a href="index.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Início</span>
+      </a>
+
+      <a href="analises.html">
+        <i class="fa-solid fa-chart-column"></i>
+        <span>Análises</span>
+      </a>
+
+      <a href="recomendacoes.html">
+        <i class="fa-regular fa-star"></i>
+        <span>Recomendações</span>
+      </a>
+
+    </nav>
+
+    <!-- PERFIL -->
+    <div class="perfil">
+
+      <a href="configuracoes.html">
+        <i class="fa-solid fa-gear"></i>
+      </a>  
+
+      <i class="fa-regular fa-bell bell-icon"></i>
+
+      <!-- USUÁRIO -->
+      <div class="usuario">
+
+        <!-- BOTÃO PERFIL -->
+        <div class="usuario-info">
+
+          <img src="https://i.pravatar.cc/100" alt="Usuária">
+
+          <span>Olá, Mari</span>
+
+        </div>
+
+        <!-- DROPDOWN PERFIL -->
+        <div class="profile-dropdown">
+
+          <a href="editarperfil.html">
+
+            <i class="fa-regular fa-user"></i>
+            Editar Perfil
+
+          </a>
+
+          <a href="ajuda.html">
+
+            <i class="fa-regular fa-circle-question"></i>
+            Ajuda
+
+          </a>
+
+          <a href="login.html">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Encerrar Sessão
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- SIDEBAR NOTIFICAÇÕES -->
+
+  <div class="notification-sidebar">
+
+    <div class="sidebar-header">
+
+      <h2>Notificações</h2>
+
+      <i class="fa-solid fa-xmark close-sidebar"></i>
+
+    </div>
+
+    <div class="notification-item">
+
+      <p>💧 Hora de beber água</p>
+
+    </div>
+
+    <div class="notification-item">
+
+      <p>🌸 Seu ciclo começa amanhã</p>
+
+    </div>
+
+    <div class="notification-item">
+
+      <p>💊 Tomar contraceptivo às 20h</p>
 
     </div>
 
   </div>
 
-  <!-- LINKS-->
-
-  <a href="index.html">
-    <i class="fa-solid fa-house"></i>
-    <span>Início</span>
-  </a>
-
-  <a href="analises.html">
-    <i class="fa-solid fa-chart-column"></i>
-    <span>Análises</span>
-  </a>
-
-  <a href="recomendacoes.html">
-    <i class="fa-regular fa-star"></i>
-    <span>Recomendações</span>
-  </a>
-
-</nav>
-
-<!-- PERFIL -->
-<div class="perfil">
-
-  <a href="configuracoes.html">
-    <i class="fa-solid fa-gear"></i>
-  </a>  
-
-  <i class="fa-regular fa-bell bell-icon"></i>
-
-  <!-- USUÁRIO -->
-  <div class="usuario">
-
-    <!-- BOTÃO PERFIL -->
-    <div class="usuario-info">
-
-      <img src="https://i.pravatar.cc/100" alt="Usuária">
-
-      <span>Olá, Mari</span>
-
-    </div>
-
-    <!-- DROPDOWN PERFIL -->
-    <div class="profile-dropdown">
-
-      <a href="editarperfil.html">
-
-        <i class="fa-regular fa-user"></i>
-        Editar Perfil
-
-      </a>
-
-      <a href="ajuda.html">
-
-        <i class="fa-regular fa-circle-question"></i>
-        Ajuda
-
-      </a>
-
-      <a href="login.html">
-
-        <i class="fa-solid fa-right-from-bracket"></i>
-        Encerrar Sessão
-
-      </a>
-
-    </div>
-
-  </div>
-
-</div>
-
+  <div class="main-dashboard">
+    <!-- Título Centralizado -->
+    <header class="dashboard-header">
+        <h1>Consultas e Exames</h1>
     </header>
 
-    <!-- SIDEBAR NOTIFICAÇÕES -->
+    <!-- Container das Colunas -->
+    <div class="columns-container">
+        
+        <!-- Coluna da Esquerda: Cadastro -->
+        <section class="column column-left">
+            <div class="card-box">
+                <h2>Cadastro</h2>
+                <form id="reminder-form">
+                    <div class="input-group">
+                        <label for="reminder-type">Tipo de Procedimento:</label>
+                        <select id="reminder-type" required>
+                            <option value="" disabled selected>Selecione...</option>
+                            <option value="consulta">Consulta Médica</option>
+                            <option value="preventivo">Papanicolau</option>
+                            <option value="ultrassom">Ultrassonografia</option>
+                        </select>
+                    </div>
 
-<div class="notification-sidebar">
+                    <div class="input-group">
+                        <label for="reminder-date">Data:</label>
+                        <input type="date" id="reminder-date" required>
+                    </div>
 
-  <div class="sidebar-header">
+                    <div class="input-group">
+                        <label for="doctor-name">Profissional de Saúde:</label>
+                        <input type="text" id="doctor-name" placeholder="Ex: Dra. Ana Souza">
+                    </div>
 
-    <h2>Notificações</h2>
+                    <div class="input-group">
+                        <label for="clinic-name">Clínica / Local:</label>
+                        <input type="text" id="clinic-name" placeholder="Ex: Clínica Femme">
+                    </div>
 
-    <i class="fa-solid fa-xmark close-sidebar"></i>
+                    <div class="input-group">
+                        <label for="address">Endereço:</label>
+                        <input type="text" id="address" placeholder="Ex: Rua das Flores, 123">
+                    </div>
 
+                    <button type="submit" class="btn-save">Agendar Lembrete</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Coluna da Direita: Meus Lembretes -->
+        <section class="column column-right">
+            <div class="card-box">
+                <h2>Meus Lembretes</h2>
+                <div id="reminders-list">
+                    <p class="empty-msg">Nenhum lembrete agendado.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
   </div>
 
-  <div class="notification-item">
-
-    <p>💧 Hora de beber água</p>
-
-  </div>
-
-  <div class="notification-item">
-
-    <p>🌸 Seu ciclo começa amanhã</p>
-
-  </div>
-
-  <div class="notification-item">
-
-    <p>💊 Tomar contraceptivo às 20h</p>
-
-  </div>
-
-</div>
-
-<!-- JS -->
+  <!-- JS -->
   <script src="./js/lembretes.js"></script>
 
 </body>
