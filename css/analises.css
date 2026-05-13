@@ -512,3 +512,141 @@ body{
 
   font-size:16px;
 }
+
+/* CONTAINER */
+
+.container-analises{
+
+  width:100%;
+
+  padding:40px;
+
+  display:flex;
+  justify-content:center;
+}
+
+/* PAINEL */
+
+.painel-analises{
+
+  width:100%;
+  max-width:1250px;
+
+  min-height:650px;
+
+  background:
+  rgba(255,255,255,0.65);
+
+  backdrop-filter:blur(10px);
+
+  border-radius:30px;
+
+  padding:35px;
+
+  box-shadow:
+  0 8px 25px rgba(0,0,0,0.06);
+
+  position:relative;
+  z-index:2;
+}
+
+/* TOPO */
+
+.topo-analises{
+
+  margin-bottom:30px;
+}
+
+.titulo-box h1{
+
+  color:#8F5353;
+
+  font-size:2rem;
+
+  margin-bottom:5px;
+}
+
+.titulo-box p{
+
+  color:#b26b6b;
+
+  font-size:0.95rem;
+}
+
+/* GRID */
+
+.grid-cards{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(3, 1fr);
+
+  gap:20px;
+}
+
+/* CARD */
+
+.card-analise{
+
+  background:white;
+
+  border-radius:22px;
+
+  padding:25px;
+
+  min-height:140px;
+
+  box-shadow:
+  0 4px 15px rgba(0,0,0,0.05);
+
+  transition:0.3s ease;
+}
+
+.card-analise:hover{
+
+  transform:translateY(-4px);
+}
+
+/* CARD GRANDE */
+
+.card-analise.grande{
+
+  grid-column:span 3;
+
+  min-height:180px;
+}
+
+/* TÍTULOS */
+
+.card-analise h3{
+
+  color:#8F5353;
+
+  margin-bottom:12px;
+
+  font-size:1.1rem;
+}
+
+.card-analise p{
+
+  color:#666;
+
+  line-height:1.5;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+  .grid-cards{
+
+    grid-template-columns:1fr;
+  }
+
+  .card-analise.grande{
+
+    grid-column:span 1;
+  }
+
+}
