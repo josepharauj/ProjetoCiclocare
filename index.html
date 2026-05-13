@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>CicloCare | Dashboard</title>
 
+  <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/dashboard.css">
-
-  <script src="./js/dashboard.js" defer></script>
-
-  <!-- Ícones -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+    rel="stylesheet"
+  >
+  <!-- CSS -->
+  <link
+    rel="stylesheet"
+    href="./css/dashboard.css"
+  >
+  <!-- ÍCONES -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+  <!-- JS -->
+  <script
+    src="./js/dashboard.js"
+    defer
+  ></script>
 
 </head>
 
@@ -26,83 +45,138 @@
 
   <!-- NAVBAR -->
   <header class="navbar">
-
+    <!-- LOGO -->
     <div class="logo">
-
-      <img src="./assets/images/icone.png" alt="Logo">
-
+      <img
+        src="./assets/images/icone.png"
+        alt="Logo"
+      >
       <span>CicloCare</span>
 
     </div>
-
     <!-- MENU -->
-<nav class="menu">
+    <nav class="menu">
+      <!-- DROPDOWN -->
+      <div class="dropdown">
+        <button class="dropdown-btn">
+          <i class="fa-solid fa-bars"></i>
+          <span>Menu</span>
+        </button>
 
-  <a href="#">
-    <i class="fa-solid fa-bars"></i>
-    <span>Menu</span>
-  </a>
+        <div class="dropdown-content">
 
-  <a href="#">
-    <i class="fa-regular fa-calendar"></i>
-    <span>Calendário</span>
-  </a>
+          <a href="registrodesintomas.html">
 
-  <a href="#">
-    <i class="fa-solid fa-chart-column"></i>
-    <span>Análises</span>
-  </a>
+            Registros de Sintomas
+          </a>
+          <a href="lembretes.html">
+            Lembretes
+          </a>
+          <a href="alarmes.html">
+            Alarmes
+          </a>
 
-  <a href="#">
-    <i class="fa-regular fa-star"></i>
-    <span>Recomendações</span>
-  </a>
+        </div>
 
-</nav>
+      </div>
+      <!-- LINKS -->
+      <a href="index.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Início</span>
+      </a>
 
-<!-- ÁREA DIREITA DA NAVBAR -->
-<div class="navbar-right">
+      <a href="analises.html">
+        <i class="fa-solid fa-chart-column"></i>
+        <span>Análises</span>
+      </a>
 
-  <!-- SWITCH -->
-  <div class="pregnancy-switch">
+      <a href="recomendacoes.html">
+        <i class="fa-regular fa-star"></i>
+        <span>Recomendações</span>
+      </a>
 
-    <span class="switch-label">
-      Modo Gestante
-    </span>
+    </nav>
 
-    <label class="switch">
+    <!-- DIREITA -->
+    <div class="navbar-right">
+     
+      <!-- SWITCH 
+      <div class="pregnancy-switch">
+        <span class="switch-label">
+          Modo Gestante
+        </span>
+        <label class="switch">
+          <input
+            type="checkbox"
+            id="pregnancyToggle"
+          >
+          <span class="slider"></span>
+        </label>
+      </div>-->
 
-      <input
-        type="checkbox"
-        id="pregnancyToggle"
-      >
+      <!-- PERFIL -->
 
-      <span class="slider"></span>
+      <div class="perfil">
 
-    </label>
+        <!-- CONFIG -->
+        <a href="configuracoes.html">
+          <i class="fa-solid fa-gear"></i>
+        </a>
 
-  </div>
+        <!-- SINO -->
 
-  <!-- PERFIL -->
-  <div class="perfil">
+        <i class="fa-regular fa-bell bell-icon"></i>
+        <!-- USUÁRIO -->
+        <div class="usuario">
+          <!-- BOTÃO -->
+          <div class="usuario-info">
+            <img
+              src="https://i.pravatar.cc/100"
+              alt="Usuária"
+            >
+            <span>Olá, Mari</span>
+          </div>
 
-    <i class="fa-solid fa-gear"></i>
+          <!-- DROPDOWN PERFIL -->
+          <div class="profile-dropdown">
+            <a href="editarperfil.html">
+              <i class="fa-regular fa-user"></i>
+              Editar Perfil
+            </a>
 
-    <i class="fa-regular fa-bell"></i>
-
-    <div class="usuario">
-
-      <img src="https://i.pravatar.cc/100" alt="Usuária">
-
-      <span>Olá, Mari</span>
-
+            <a href="ajuda.html">
+              <i class="fa-regular fa-circle-question"></i>
+              Ajuda
+            </a>
+            <a href="login.html">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              Encerrar Sessão
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+  </header>
 
+  <!-- SIDEBAR -->
+
+  <div class="notification-sidebar">
+    <div class="sidebar-header">
+      <h2>Notificações</h2>
+      <i class="fa-solid fa-xmark close-sidebar"></i>
+    </div>
+    <div class="notification-item">
+      <p>💧 Hora de beber água</p>
+    </div>
+    <div class="notification-item">
+      <p>🌸 Seu ciclo começa amanhã</p>
+    </div>
+    <div class="notification-item">
+      <p>💊 Tomar contraceptivo às 20h</p>
+    </div>
   </div>
 
-</div>
-
-  </header>
+  <!-- DASHBOARD -->
 
   <div class="flower flower1">
     <img src="./assets/images/icone.png">
@@ -129,73 +203,133 @@
   </div>
 
   <main class="dashboard">
-
+    <!-- ESQUERDA -->
     <section class="dashboard-painel-esquerdo">
-
-      <div class="cycle-circle">        
+      <!-- CICLO -->
+      <div class="cycle-circle">
         <h3>Menstruação:</h3>
         <strong>3º dia</strong>
-        <button>Editar Menstruação</button> 
+        <button>
+          Editar Menstruação
+        </button>
       </div>
-
+      <!-- CONTEÚDO -->
       <section class="conteudo-diario">
         <h2>Meu conteúdo diário</h2>
-
+        <!-- FASE -->
         <article class="quadro-fase-ciclo">
-          <h3>Fase atual do ciclo: Menstrual</h3>
+          <h3>
+            Fase atual do ciclo: Menstrual
+          </h3>
           <p>
-            Ainda na fase Menstrual. O fluxo pode estar mais leve, mas a energia continua baixa.
+            Ainda na fase Menstrual.
+            O fluxo pode estar mais leve,
+            mas a energia continua baixa.
           </p>
-          <button class="botao-rosa">Ver recomendações</button>
+          <button class="botao-rosa">
+            Ver recomendações
+          </button>
         </article>
 
+        <!-- MINI CARDS -->
         <div class="mini-cards">
           <article>
-            <h3>Registre seus Sintomas</h3>
-            <button class="botao-sintomas">
-              <img src="./assets/icons/botao_adicionar.png">
+            <h3>
+              Registre seus Sintomas
+            </h3>
+            <button class="botao-sintomas" 
+            onclick="window.location.href='registrodesintomas.html'">
+                <img src="./assets/icons/botao_adicionar.png">
             </button>
           </article>
+
           <article>
-            <h3>Chance de gravidez de hoje:</h3>
-            <p>Baixa probabilidade</p>
-            <button class="botao-rosa">Ver resumo</button>
+            <h3>
+              Chance de gravidez de hoje:
+            </h3>
+            <p>
+              Baixa probabilidade
+            </p>
+
+            <button class="botao-rosa">
+              Ver resumo
+            </button>
+
           </article>
+
           <article>
-            <h3>O seu método contraceptivo é:</h3>
-            <p>Pílula</p>
+
+            <h3>
+              O seu método contraceptivo é:
+            </h3>
+
+            <p>
+              Pílula
+            </p>
+
             <div class="container-aviso-horario">
-              <img src="./assets/icons/icone_relogio.png">
-              <span>08:00h</span>
+              <img
+                src="./assets/icons/icone_relogio.png"
+                alt=""
+              >
+              <span>
+                08:00h
+              </span>
+            </div>
           </article>
         </div>
       </section>
     </section>
 
+    <!-- DIREITA -->
     <section class="dashboard-painel-direito">
-      
+
+      <!-- CALENDÁRIO -->
       <section class="calendar-card">
-        
         <header class="calendar-header">
           <h2>Calendário</h2>
-
           <div class="controle-mes-ano">
-
-            <button id="prevMonth" aria-label="Mês anterior">
-              <img src="./assets/icons/seta_esquerda.png">
+            <button
+              id="prevMonth"
+              aria-label="Mês anterior"
+            >
+              <img
+                src="./assets/icons/seta_esquerda.png"
+                alt=""
+              >
             </button>
 
-            <strong id="monthYear">março 2026</strong>
+            <strong id="monthYear">
+              Março 2026
+            </strong>
 
-            <button id="nextMonth" aria-label="Mês seguinte">
-              <img id="seta_direita" src="./assets/icons/seta_esquerda.png">
+            <button
+              id="nextMonth"
+              aria-label="Próximo mês"
+            >
+
+              <img
+                id="seta_direita"
+                src="./assets/icons/seta_esquerda.png"
+                alt=""
+              >
             </button>
-
           </div>
-          <button class="options-button" aria-label="Opções do calendário">
-            <img src="./assets/icons/tres_pontos.png">
-          </button>  
+
+          <button
+            class="options-button"
+            aria-label="Opções"
+          >
+
+            <img
+              src="./assets/icons/tres_pontos.png"
+              alt=""
+            >
+
+          </button>
         </header>
+
+        <!-- WEEKDAYS -->
 
         <div class="weekdays">
           <span>dom</span>
@@ -207,37 +341,56 @@
           <span>sáb</span>
         </div>
 
-        <div class="calendar-grid" id="calendarGrid">
-          <!-- será feito em JS posteriormente -->
-        </div>
+        <!-- GRID -->
+
+        <div
+          class="calendar-grid"
+          id="calendarGrid"
+        ></div>
 
       </section>
+
+      <!-- LEMBRETES -->
 
       <section class="container-lembretes">
         <h2>Lembretes</h2>
-
         <div class="container-lembretes-cards">
           <article class="card-lembrete">
             <div class="container-lembrete-agua">
-              <img src="./assets/icons/gota_agua.png">
+              <img
+                src="./assets/icons/gota_agua.png"
+                alt=""
+              >
               <h3>Água</h3>
             </div>
-            <div class="container-meta-agua">  
+
+            <div class="container-meta-agua">
               <strong>0</strong>
               <span>/ 2,25 L</span>
             </div>
+
             <div class="botoes-lembrete-agua">
               <button>
-                <img src="./assets/icons/botao_menos.png">
+                <img
+                  src="./assets/icons/botao_menos.png"
+                  alt=""
+                >
+
               </button>
+
               <button>
-                <img src="./assets/icons/botao_mais.png">
+                <img
+                  src="./assets/icons/botao_mais.png"
+                  alt=""
+                >
+
               </button>
             </div>
           </article>
-        </div>  
+        </div>
       </section>
     </section>
-  </main>  
+  </main>
 </body>
-</html>  
+
+</html>
