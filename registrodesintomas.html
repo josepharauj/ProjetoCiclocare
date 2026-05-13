@@ -274,9 +274,13 @@
 
   </div>
 
-  <button class="btn-salvar-final">
+  <button class="btn-salvar-final" onclick="salvarRegistro()">
       Salvar Registro
   </button>
+  
+  <div id="mensagem-sucesso" class="mensagem-sucesso">
+    Registro salvo com sucesso!
+  </div>
 
         </main>
     </div>
@@ -285,6 +289,18 @@
       function select(btn) {
           btn.classList.toggle('active');
       }
+  </script>
+
+  <script>
+
+    function salvarRegistro(){
+      const mensagem =
+      document.getElementById("mensagem-sucesso");
+      mensagem.classList.add("show");
+      setTimeout(() => {
+        mensagem.classList.remove("show");
+      }, 2500);
+    }
   </script>
 
 </body>
