@@ -578,3 +578,39 @@ body{
 .btn-salvar-final:hover { 
     opacity:0.92;
 }
+
+.mensagem-sucesso{
+
+  position:fixed;
+
+  top:30px;
+  right:30px;
+
+  background:#ff4f8d;
+
+  color:white;
+
+  padding:16px 24px;
+
+  border-radius:14px;
+
+  font-weight:600;
+
+  box-shadow:
+  0 10px 20px rgba(0,0,0,0.15);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:0.4s;
+
+  z-index:9999;
+}
+
+.mensagem-sucesso.show{
+
+  opacity:1;
+
+  transform:translateY(10px);
+}
