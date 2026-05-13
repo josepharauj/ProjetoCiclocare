@@ -67,6 +67,63 @@ body{
   width:42px;
 }
 
+.flower{
+
+  position:absolute;
+
+  width:140px;
+
+  opacity:0.12;
+
+  animation:
+  float 7s ease-in-out infinite;
+}
+
+.flower img{
+  width:100%;
+}
+
+.flower1{
+  top:20px;
+  left:-20px;
+}
+
+.flower2{
+  top:100px;
+  right:120px;
+  width:90px;
+  animation-delay:1s;
+}
+
+.flower3{
+  bottom:-30px;
+  right:-10px;
+  width:240px;
+  animation-delay:2s;
+}
+
+.flower4{
+  bottom:80px;
+  left:40px;
+  width:110px;
+  animation-delay:3s;
+}
+
+.flower5{
+  top:250px;
+  left:120px;
+  width:70px;
+  animation-delay:4s;
+}
+
+.flower6{
+  bottom:220px;
+  right:40px;
+  width:100px;
+  animation-delay:5s;
+}
+
+
 .menu {
 
   display: flex;
