@@ -162,6 +162,465 @@
 
 </div>
 
+<!-- Conteúo do corpo do código --> 
+
+<div class="container">
+
+    <!-- TÍTULO -->
+
+    <div class="titulo">
+
+      <h1>Editar Perfil</h1>
+
+      <p>
+
+        Gerencie suas informações pessoais e personalize
+        sua experiência no CicloCare.
+
+      </p>
+
+    </div>
+
+    <!-- FOTO PERFIL -->
+
+    <section class="card">
+
+      <h2>📸 Foto de Perfil</h2>
+
+      <div class="foto-area">
+
+        <!-- FOTO -->
+
+        <img src="https://i.pravatar.cc/200"
+             alt="Foto Perfil"
+             id="fotoPerfil">
+
+        <!-- BOTÕES -->
+
+        <div class="foto-botoes">
+
+          <!-- LABEL vira botão -->
+
+          <label for="inputFoto"
+                 class="btn-primary">
+
+            Trocar foto
+
+          </label>
+
+          <!-- INPUT HIDDEN -->
+
+          <input type="file"
+                 id="inputFoto"
+                 accept="image/*"
+                 hidden>
+
+          <!-- REMOVER -->
+
+          <button class="btn-text"
+                  id="removerFoto">
+
+            Remover foto
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- DADOS PESSOAIS -->
+
+    <section class="card">
+
+      <h2>📝 Dados Pessoais</h2>
+
+      <p class="descricao">
+
+        Essas informações ajudam a personalizar sua experiência
+        dentro da plataforma.
+
+      </p>
+
+      <div class="grid">
+
+        <!-- NOME -->
+
+        <div class="input-group">
+
+          <label>Nome</label>
+
+          <input type="text"
+                 value="Maria Eduarda">
+
+        </div>
+
+        <!-- EMAIL -->
+
+        <div class="input-group">
+
+          <label>E-mail</label>
+
+          <input type="email"
+                 value="maria@email.com">
+
+        </div>
+
+        <!-- NASCIMENTO -->
+
+        <div class="input-group">
+
+          <label>Data de nascimento</label>
+
+          <input type="date"
+                 value="1998-05-12">
+
+        </div>
+
+        <!-- IDADE -->
+
+        <div class="input-group">
+
+          <label>Idade atual</label>
+
+          <input type="text"
+                 value="27 anos"
+                 readonly>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- INFORMAÇÕES CICLO -->
+
+    <section class="card">
+
+      <h2>🌸 Informações do Ciclo</h2>
+
+      <p class="descricao">
+
+        Essas informações são calculadas automaticamente
+        com base nos seus registros recentes.
+
+      </p>
+
+      <!-- BOX -->
+
+      <div class="info-box">
+
+        <h3>Duração média do ciclo</h3>
+
+        <p>
+
+          Seu ciclo médio atual é de
+          <strong>28 dias</strong>.
+
+        </p>
+
+      </div>
+
+      <!-- BOX -->
+
+      <div class="info-box">
+
+        <h3>Duração da menstruação</h3>
+
+        <p>
+
+          Sua média registrada é de
+          <strong>5 dias</strong>.
+
+        </p>
+
+      </div>
+
+      <!-- BOX -->
+
+      <div class="info-box">
+
+        <h3>Fluxo menstrual recente</h3>
+
+        <p>
+
+          Seu último fluxo registrado foi
+          <strong>Moderado → Intenso</strong>.
+
+        </p>
+
+      </div>
+
+      <!-- SINTOMAS -->
+
+      <div class="info-box">
+
+        <h3>Sintomas frequentes</h3>
+
+        <div class="chips">
+
+          <div class="chip active">
+
+            😣 Cólicas
+
+          </div>
+
+          <div class="chip active">
+
+            😴 Cansaço
+
+          </div>
+
+          <div class="chip active">
+
+            😡 Irritação
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BOTÃO -->
+
+      <button class="btn-primary">
+
+        Atualizar registros do ciclo
+
+      </button>
+
+    </section>
+
+    <!-- MÉTODO CONTRACEPTIVO -->
+
+    <section class="card">
+
+      <h2>💊 Método Contraceptivo</h2>
+
+      <p class="descricao">
+
+        Configure informações relacionadas ao seu método
+        contraceptivo e receba lembretes inteligentes.
+
+      </p>
+
+      <!-- CHIP -->
+
+      <div class="chips">
+
+        <div class="chip active">
+
+          💊 Pílula
+
+        </div>
+
+      </div>
+
+      <!-- ALERTA -->
+
+      <div class="alerta-box">
+
+        <h3>💡 Recomendação</h3>
+
+        <p>
+
+          Ative lembretes para tomar sua medicação
+          no horário correto.
+
+        </p>
+
+        <button class="btn-primary">
+
+          Criar lembrete
+
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- FERTILIDADE -->
+
+    <section class="card">
+
+      <h2>🤰 Informações de Fertilidade</h2>
+
+      <p class="descricao">
+
+        Essas preferências ajudam o sistema a oferecer
+        recomendações mais relevantes.
+
+      </p>
+
+      <div class="chips">
+
+        <div class="chip">
+
+          🤰 Tentante
+
+        </div>
+
+        <div class="chip">
+
+          👶 Gestante
+
+        </div>
+
+        <div class="chip active">
+
+          🛡️ Evitar gravidez
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- SAÚDE -->
+
+    <section class="card">
+
+      <h2>🩺 Informações de Saúde</h2>
+
+      <p class="descricao">
+
+        Compartilhe informações opcionais que podem
+        ajudar na precisão das análises.
+
+      </p>
+
+      <div class="chips">
+
+        <div class="chip">
+
+          SOP
+
+        </div>
+
+        <div class="chip active">
+
+          Irregularidade menstrual
+
+        </div>
+
+        <div class="chip">
+
+          Endometriose
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- OBJETIVOS -->
+
+    <section class="card">
+
+      <h2>🎯 Objetivos da Usuária</h2>
+
+      <p class="descricao">
+
+        Personalize o comportamento do CicloCare
+        de acordo com seus objetivos atuais.
+
+      </p>
+
+      <div class="objetivos">
+
+        <!-- CARD -->
+
+        <div class="objetivo-card active">
+
+          <i class="fa-solid fa-calendar-days"></i>
+
+          <h3>Acompanhar ciclo</h3>
+
+          <p>
+
+            Monitore fases hormonais e previsões.
+
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="objetivo-card">
+
+          <i class="fa-solid fa-heart"></i>
+
+          <h3>Engravidar</h3>
+
+          <p>
+
+            Receba insights sobre fertilidade.
+
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="objetivo-card">
+
+          <i class="fa-solid fa-shield-heart"></i>
+
+          <h3>Evitar gravidez</h3>
+
+          <p>
+
+            Receba alertas e previsões do ciclo.
+
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="objetivo-card">
+
+          <i class="fa-solid fa-chart-line"></i>
+
+          <h3>Acompanhar sintomas</h3>
+
+          <p>
+
+            Visualize padrões emocionais e físicos.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- BOTÃO -->
+
+    <div class="salvar-area">
+
+      <button class="salvar-btn"
+              id="salvarBtn">
+
+        Salvar alterações
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- TOAST -->
+
+  <div class="toast"
+       id="toast">
+
+    ✔ Perfil atualizado com sucesso
+
+  </div>
+
 <!-- JS -->
   <script src="./js/editarperfil.js"></script>
 
