@@ -10,7 +10,20 @@ document.querySelector(".dropdown-content");
 
 if (dropdownBtn && dropdownContent) {
 
+let currentDate = new Date();
+
+const dropdownBtn = document.querySelector(".dropdown-btn");
+const dropdownContent = document.querySelector(".dropdown-content");
+
+if (dropdownBtn && dropdownContent) {
   dropdownBtn.addEventListener("click", () => {
+    dropdownContent.classList.toggle("active");
+  });
+}
+
+function renderCalendar(){
+
+  calendarGrid.innerHTML = '';
 
     if (dropdownContent.style.display === "flex") {
 
