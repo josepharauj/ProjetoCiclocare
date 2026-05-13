@@ -8,6 +8,15 @@ const nextMonth = document.getElementById('nextMonth');
 
 let currentDate = new Date();
 
+const dropdownBtn = document.querySelector(".dropdown-btn");
+const dropdownContent = document.querySelector(".dropdown-content");
+
+if (dropdownBtn && dropdownContent) {
+  dropdownBtn.addEventListener("click", () => {
+    dropdownContent.classList.toggle("active");
+  });
+}
+
 function renderCalendar(){
 
   calendarGrid.innerHTML = '';
