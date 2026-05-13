@@ -16,10 +16,15 @@
 
   <script src="./js/dashboard.js" defer></script>
 
+  <!-- Ícones -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
 
+  <!-- NAVBAR -->
   <header class="navbar">
 
     <div class="logo">
@@ -30,45 +35,72 @@
 
     </div>
 
-    <nav class="menu">
+    <!-- MENU -->
+<nav class="menu">
 
-      <a href="#">Menu</a>
-      <a href="#">Calendário</a>
-      <a href="#">Análises</a>
-      <a href="#">Recomendações</a>
+  <a href="#">
+    <i class="fa-solid fa-bars"></i>
+    <span>Menu</span>
+  </a>
 
-    </nav>
+  <a href="#">
+    <i class="fa-regular fa-calendar"></i>
+    <span>Calendário</span>
+  </a>
 
-    <div class="navbar-right">
+  <a href="#">
+    <i class="fa-solid fa-chart-column"></i>
+    <span>Análises</span>
+  </a>
 
-      <!-- SWITCH -->
-      <div class="pregnancy-switch">
+  <a href="#">
+    <i class="fa-regular fa-star"></i>
+    <span>Recomendações</span>
+  </a>
 
-        <span class="switch-label">
-         Modo Gestante
-        </span>
+</nav>
 
-        <label class="switch">
+<!-- ÁREA DIREITA DA NAVBAR -->
+<div class="navbar-right">
 
-          <input
-            type="checkbox"
-            id="pregnancyToggle"
-          >
+  <!-- SWITCH -->
+  <div class="pregnancy-switch">
 
-          <span class="slider"></span>
+    <span class="switch-label">
+      Modo Gestante
+    </span>
 
-        </label>
+    <label class="switch">
 
-      </div>
+      <input
+        type="checkbox"
+        id="pregnancyToggle"
+      >
 
-      <!-- PROFILE -->
-      <div class="profile">
+      <span class="slider"></span>
 
-        <img src="./assets/images/icone.png" alt="Perfil">
+    </label>
 
-      </div>
+  </div>
+
+  <!-- PERFIL -->
+  <div class="perfil">
+
+    <i class="fa-solid fa-gear"></i>
+
+    <i class="fa-regular fa-bell"></i>
+
+    <div class="usuario">
+
+      <img src="https://i.pravatar.cc/100" alt="Usuária">
+
+      <span>Olá, Mari</span>
 
     </div>
+
+  </div>
+
+</div>
 
   </header>
 
