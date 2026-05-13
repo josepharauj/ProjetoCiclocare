@@ -698,6 +698,41 @@ body{
   gap:20px;
 }
 
+/* HEADER INPUT */
+
+.input-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:8px;
+}
+
+/* ÍCONE EDITAR */
+
+.edit-icon{
+
+  color:#B26B6B;
+
+  cursor:pointer;
+
+  font-size:14px;
+
+  transition:0.3s;
+}
+
+.edit-icon:hover{
+
+  transform:scale(1.1);
+
+  color:#9d5d5d;
+}
+
+
+
 /* INPUTS */
 
 .input-group{
@@ -740,6 +775,22 @@ body{
 .input-group input:focus{
 
   border-color:#d7a6a6;
+}
+
+/* BOTÃO SALVAR */
+
+.salvar-dados-area{
+  display:flex;
+  margin-top:24px;
+}
+
+#mensagemDados{
+
+  margin-top:16px;
+
+  font-size:14px;
+
+  font-weight:500;
 }
 
 /* READONLY */
