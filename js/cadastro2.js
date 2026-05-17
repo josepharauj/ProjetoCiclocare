@@ -1,51 +1,138 @@
 const form =
-document.getElementById('cycleForm');
+document.getElementById('formCiclo');
 
-form.addEventListener('submit', (event) => {
+form.addEventListener(
+  'submit',
 
-  event.preventDefault();
+  async (event) => {
 
-  const nascimento =
-  document.getElementById('nascimento')
-  .value;
+    event.preventDefault();
 
-  const duracaoCiclo =
-  document.getElementById('duracaoCiclo')
-  .value;
+    const token =
+    localStorage.getItem('token');
 
-  const duracaoMenstruacao =
-  document.getElementById('duracaoMenstruacao')
-  .value;
+    if(!token){
 
-  const ultimaMenstruacao =
-  document.getElementById('ultimaMenstruacao')
-  .value;
+      alert(
+        'Usuário não autenticado'
+      );
 
-  if(
-    nascimento === '' ||
-    duracaoCiclo === '' ||
-    duracaoMenstruacao === '' ||
-    ultimaMenstruacao === ''
-  ){
+      window.location.href =
+      'login.html';
 
-    alert(
-      'Preencha todos os campos'
+      return;
+    }
+
+    const ultimaMenstruacao =
+    document.getElementById(
+      'ultimaMenstruacao'
+    ).value;
+
+    const duracaoMenstruacao =
+    parseInt(
+      document.getElementById(
+        'duracaoMenstruacao'
+      ).value
     );
 
-    return;
-  }
+    // calcula dataFim automaticamente
+    const dataFimObj =
+    new Date(ultimaMenstruacao);
 
-  const dadosCiclo = {
+    dataFimObj.setDate(
+      dataFimObj.getDate() +
+      duracaoMenstruacao
+    );
 
-    nascimento,
-    duracaoCiclo,
-    duracaoMenstruacao,
-    ultimaMenstruacao
-  };
+    const dataFim =
+    dataFimObj
+      .toISOString()
+      .split('T')[0];
 
-  console.log(dadosCiclo);
+    const dadosCiclo = {
 
-  window.location.href =
-  'index.html';
+      dataInicio:
+      ultimaMenstruacao,
+
+      dataFim:
+      dataFim,
+
+      duracaoCiclo:
+      parseInt(
+        document.getElementById(
+          'duracaoCiclo'
+        ).value
+      ),
+
+      duracaoMenstruacao:
+      duracaoMenstruacao,
+
+      ultimaMenstruacao:
+      ultimaMenstruacao,
+
+      intensidadeFluxo:
+      "MEDIO"
+
+    };
+
+    console.log(dadosCiclo);
+
+    try {
+
+      const response =
+      await fetch(
+        'http://localhost:8080/api/ciclos',
+        {
+
+          method:'POST',
+
+          headers:{
+
+            'Content-Type':'application/json',
+
+            'Authorization':
+            `Bearer ${token}`
+
+          },
+
+          body: JSON.stringify(
+            dadosCiclo
+          )
+
+        }
+      );
+
+      const data =
+      await response.json();
+
+      console.log(data);
+
+      if(response.ok){
+
+        alert(
+          'Ciclo salvo com sucesso!'
+        );
+
+        window.location.href =
+        'index.html';
+
+      }else{
+
+        alert(
+          data.mensagem ||
+          'Erro ao salvar ciclo'
+        );
+
+      }
+
+    } catch(error){
+
+      console.error(error);
+
+      alert(
+        'Erro ao conectar com servidor'
+      );
+
+    }
 
 });
