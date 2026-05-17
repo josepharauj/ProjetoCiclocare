@@ -33,6 +33,11 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   >
+    <!--Auth-->
+  <script
+          src="./js/auth.js"
+          defer
+  ></script>
   <!-- JS -->
   <script
     src="./js/dashboard.js"
@@ -134,7 +139,9 @@
               src="https://i.pravatar.cc/100"
               alt="Usuária"
             >
-            <span>Olá, Mari</span>
+              <span id="nomeUsuario">
+                  Olá
+              </span>
           </div>
 
           <!-- DROPDOWN PERFIL -->
@@ -148,7 +155,7 @@
               <i class="fa-regular fa-circle-question"></i>
               Ajuda
             </a>
-            <a href="login.html">
+            <a href="#" id="logoutBtn">
               <i class="fa-solid fa-right-from-bracket"></i>
               Encerrar Sessão
             </a>

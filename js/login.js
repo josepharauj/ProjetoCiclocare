@@ -1,12 +1,13 @@
 const form = document.getElementById('loginForm');
-
 form.addEventListener('submit', async (e) => {
 
   e.preventDefault();
 
-  const email = document.getElementById('email').value;
+  const email =
+    document.getElementById('email').value;
 
-  const senha = document.getElementById('senha').value;
+  const senha =
+    document.getElementById('senha').value;
 
   const dadosLogin = {
     email,
@@ -16,35 +17,46 @@ form.addEventListener('submit', async (e) => {
   try {
 
     const response = await fetch(
-      'http://localhost:8080/auth/login',
+      'http://localhost:8080/api/auth/login',
       {
-        method:'POST',
 
-        headers:{
-          'Content-Type':'application/json'
+        method: 'POST',
+
+        headers: {
+          'Content-Type': 'application/json'
         },
 
-        body:JSON.stringify(dadosLogin)
+        body: JSON.stringify(dadosLogin)
+
       }
     );
 
-    if(response.ok){
+    const data = await response.json();
 
-      const data = await response.json();
+    if (response.ok) {
 
       localStorage.setItem(
         'token',
-        data.token
+        data.dados.token
+      );
+
+      localStorage.setItem(
+        'usuario',
+        JSON.stringify(data.dados.usuario)
       );
 
       alert('Login realizado com sucesso!');
 
-    }else{
+      // REDIRECIONA
+      window.location.href = 'index.html';
 
-      alert('Email ou senha inválidos');
+    } else {
+
+      alert(data.mensagem);
+
     }
 
-  } catch(error){
+  } catch (error) {
 
     console.error(error);
 

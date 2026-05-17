@@ -1,4 +1,18 @@
+// USUÁRIO LOGADO
+const usuario =
+JSON.parse(
+  localStorage.getItem('usuario')
+);
 
+const nomeUsuario =
+document.getElementById('nomeUsuario');
+
+if(usuario && nomeUsuario){
+
+  nomeUsuario.textContent =
+  `Olá, ${usuario.nome}`;
+
+}
 // =========================
 // DROPDOWN MENU
 // =========================
@@ -196,3 +210,50 @@ if (nextMonth) {
 // INICIAR CALENDÁRIO
 
 renderCalendar(currentDate);
+
+// LOGOUT
+const logoutBtn =
+document.getElementById('logoutBtn');
+
+if(logoutBtn){
+
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+    window.location.href =
+    'login.html';
+  });
+
+}
+// BUSCAR DASHBOARD
+async function carregarDashboard(){
+
+  const token =
+  localStorage.getItem('token');
+
+  try{
+
+    const response =
+    await fetch(
+      'http://localhost:8080/api/dashboard',
+      {
+
+        headers:{
+          'Authorization':
+          `Bearer ${token}`
+        }
+
+      }
+    );
+
+    const data =
+    await response.json();
+
+    console.log(data);
+
+  }catch(error){
+    console.error(error);
+  }
+}
+
+carregarDashboard();
