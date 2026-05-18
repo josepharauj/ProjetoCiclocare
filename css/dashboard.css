@@ -22,7 +22,12 @@
 }
 
 body{
-  background:#efe2de;
+  background:linear-gradient(
+    90deg,
+    #f7ecec 0%,
+    #f7ecec 50%,
+    #efd3ef 100%
+  );  
   overflow-x:hidden;
   font-family:'Poppins', sans-serif;
 }
@@ -526,7 +531,7 @@ input:checked + .slider:before{
   display:grid;
   justify-content: center;
   grid-template-columns: 420px 760px;
-  gap: 150px;
+  gap: 240px;
 }
 
 .status-card,
@@ -1029,6 +1034,19 @@ input:checked + .slider:before{
   transform:scale(1.05);
 }
 
+.day.menstruation-day {
+  background: #d94373;
+  color: whitesmoke;
+}
+
+.day.menstruation-day.selected {
+  background:  #C71585;
+  color: white;
+  box-shadow: 0 5px 15px rgba(217, 67, 115, 0.4);
+}
+
+
+
 .selected{
 
   background:#ff4f8d;
@@ -1508,13 +1526,61 @@ input:checked + .slider:before{
 }
 
 /* Estilo das Flores no Modal (reutilizando sua lógica) */
-.modal-flower {
-    position: absolute; width: 120px; opacity: 0.08;
-    animation: float 7s ease-in-out infinite; pointer-events: none;
+.flower{
+
+  position:absolute;
+
+  width:140px;
+
+  opacity:0.12;
+
+  animation:
+  float 7s ease-in-out infinite;
 }
-.flower1 { top: 10%; left: 5%; }
-.flower2 { bottom: 15%; right: 10%; }
-.flower3 { top: 40%; right: 20%; }
+
+.flower img{
+  width:100%;
+}
+
+.flower1{
+  top:20px;
+  left:-20px;
+}
+
+.flower2{
+  top:100px;
+  right:120px;
+  width:90px;
+  animation-delay:1s;
+}
+
+.flower3{
+  bottom:-30px;
+  right:-10px;
+  width:240px;
+  animation-delay:2s;
+}
+
+.flower4{
+  bottom:80px;
+  left:40px;
+  width:110px;
+  animation-delay:3s;
+}
+
+.flower5{
+  top:250px;
+  left:120px;
+  width:70px;
+  animation-delay:4s;
+}
+
+.flower6{
+  bottom:220px;
+  right:40px;
+  width:100px;
+  animation-delay:5s;
+}
 
 /* Cartão do Modal */
 .modal-card {
