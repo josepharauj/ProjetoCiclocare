@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       nomeUsuario.textContent =
       `Olá, ${usuario.nome}`;
 
-    }
+    }git branch
 
     const textareaResumo = document.getElementById("resumoHoje");
 
