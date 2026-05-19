@@ -1,132 +1,98 @@
-const form =
+const form = 
 document.getElementById('formCiclo');
 
-form.addEventListener(
-  'submit',
+form.addEventListener('submit', cadastrar);
 
-form.addEventListener('submit', async (event) => {
-
-  event.preventDefault();
+async function cadastrar(e) {
+  e.preventDefault();
 
   const usuarioSalvo = JSON.parse(
     localStorage.getItem("cadastroUsuario")
   );
 
-    const nascimento =
-    document.getElementById("nascimento").value;
-   
-    const ultimaMenstruacao =
-    document.getElementById(
-      'ultimaMenstruacao'
-    ).value;
+  if (!usuarioSalvo) {
+    alert("Preencha os dados básicos primeiro.");
+    window.location.href = "cadastro1.html";
+    return;
+  }
 
-    const duracaoMenstruacao =
-    parseInt(
-      document.getElementById(
-        'duracaoMenstruacao'
-      ).value
-    );
+  const nascimento = document.getElementById("nascimento").value;
+  const ultimaMenstruacao = document.getElementById("ultimaMenstruacao").value;
+  const duracaoCiclo = Number(document.getElementById("duracaoCiclo").value);
+  const duracaoMenstruacao = Number(document.getElementById("duracaoMenstruacao").value);
 
-    // calcula dataFim automaticamente
-    const dataFimObj =
-    new Date(ultimaMenstruacao);
+  if (
+    !nascimento ||
+    !duracaoCiclo ||
+    !duracaoMenstruacao ||
+    !ultimaMenstruacao
+  ) {
+    alert("Preencha todos os campos.");
+    return;
+  }
 
-    dataFimObj.setDate(
-      dataFimObj.getDate() +
-      duracaoMenstruacao
-    );
+  const ultimaMenstruacaoDate = new Date(`${ultimaMenstruacao}T00:00:00`);
 
-    const dataFim =
-    dataFimObj
-      .toISOString()
-      .split('T')[0];
+  const dataFimDate = new Date(ultimaMenstruacaoDate);
+  dataFimDate.setDate(
+    dataFimDate.getDate() + duracaoMenstruacao - 1
+  );
 
-    const dadosCiclo = {
+  const proximaPrevisaoDate = new Date(ultimaMenstruacaoDate);
+  proximaPrevisaoDate.setDate(
+    proximaPrevisaoDate.getDate() + duracaoCiclo
+  );
 
-      nome: usuarioSalvo.nome,
-      email: usuarioSalvo.email,
-      senha: usuarioSalvo.senha,
-      nascimento: nascimento,
+  const dataFim = dataFimDate
+    .toISOString()
+    .split("T")[0];
 
-      dataInicio:
-      ultimaMenstruacao,
+  const proximaPrevisao = proximaPrevisaoDate
+    .toISOString()
+    .split("T")[0];
 
-      dataFim:
-      dataFim,
+  const cadastroCompleto = {
+    nome: usuarioSalvo.nome,
+    email: usuarioSalvo.email,
+    senha: usuarioSalvo.senha,
+    nascimento: nascimento,
+    ultimaMenstruacao: ultimaMenstruacao,
+    duracaoCiclo: duracaoCiclo,
+    duracaoMenstruacao: duracaoMenstruacao,
+    dataInicio: ultimaMenstruacao,
+    dataFim: dataFim,
+    proximaPrevisao: proximaPrevisao,
+    intensidadeFluxo: "MEDIO"
+  };
 
-      duracaoCiclo:
-      parseInt(
-        document.getElementById(
-          'duracaoCiclo'
-        ).value
-      ),
+  console.log(cadastroCompleto);
 
-      duracaoMenstruacao:
-      duracaoMenstruacao,
-
-      ultimaMenstruacao:
-      ultimaMenstruacao,
-
-      intensidadeFluxo:
-      "MEDIO"
-
-    };
-
-    console.log(dadosCiclo);
-
-    try {
-
-      const response =
-      await fetch(
-        'http://localhost:8080/api/auth/register',
-        {
-
-          method:'POST',
-
-          headers:{
-
-            'Content-Type':'application/json',
-
-          },
-
-          body: JSON.stringify(
-            dadosCiclo
-          )
-
-        }
-      );
-
-      const data =
-      await response.json();
-
-      console.log(data);
-
-      if(response.ok){
-
-        alert(
-          'Cadastro realizado com sucesso!'
-        );
-
-        window.location.href =
-        'login.html';
-
-      }else{
-
-        alert(
-          data.mensagem ||
-          'Erro ao salvar o seu cadastro. :('
-        );
-
+  try {
+    const response = await fetch(
+      "http://localhost:8080/api/auth/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(cadastroCompleto)
       }
+    );
 
-    } catch(error){
+    const data = await response.json();
 
-      console.error(error);
+    if (response.ok) {
+      localStorage.removeItem("cadastroUsuario");
 
-      alert(
-        'Erro ao conectar com servidor'
-      );
+      alert("Cadastro realizado com sucesso!");
 
+      window.location.href = "login.html";
+    } else {
+      alert(data.mensagem || "Erro ao realizar cadastro.");
     }
 
-}));
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao conectar com servidor");
+  }
+}
