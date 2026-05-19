@@ -352,9 +352,9 @@ async function exibirDashboard() {
   }
 }
 
-// INICIAR CALENDÁRIO
-
-renderCalendar(currentDate);
+window.onload = async () => {
+  await exibirDashboard();
+}
 
 // LOGOUT
 const logoutBtn =
@@ -370,8 +370,8 @@ if(logoutBtn){
   });
 
 }
-// BUSCAR DASHBOARD
-async function carregarDashboard(){
+// já executado por exibirDashboard()
+/* async function carregarDashboard(){
 
   const token =
   localStorage.getItem('token');
@@ -401,4 +401,4 @@ async function carregarDashboard(){
   }
 }
 
-carregarDashboard();
+carregarDashboard(); */

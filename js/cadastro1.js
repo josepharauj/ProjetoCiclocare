@@ -67,52 +67,6 @@ form.addEventListener('submit', async (event) => {
     senha
   };
 
-    localStorage.setItem("cadastroUsuario", JSON.stringify(usuario));
-    window.location.href = "cadastro2.html";
-
-    /* const response = await fetch(
-      'http://localhost:8080/api/auth/register',
-      {
-
-        method:'POST',
-
-        headers:{
-          'Content-Type':'application/json'
-        },
-
-        body:JSON.stringify(usuario)
-
-      }
-    ); 
-
-    if(response.ok){
-      const data = await response.json();
-
-      localStorage.setItem("usuarioId", data.dados.id);
-
-      alert(
-        'Cadastro realizado com sucesso!'
-      );
-
-      window.location.href =
-      'cadastro2.html';
-
-    }else{
-
-      const erro =
-      await response.text();
-
-      alert(erro);
-    }
-
-  }catch(error){
-
-    console.log(error);
-
-    alert(
-      'Erro ao conectar com o servidor'
-    );
-
-  } */
-
+  localStorage.setItem("cadastroUsuario", JSON.stringify(usuario));
+  window.location.href = "cadastro2.html";
 });
