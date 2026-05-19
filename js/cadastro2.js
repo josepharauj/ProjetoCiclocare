@@ -12,21 +12,9 @@ form.addEventListener('submit', async (event) => {
     localStorage.getItem("cadastroUsuario")
   );
 
-    const token =
-    localStorage.getItem('token');
-
-    if(!token){
-
-      alert(
-        'Usuário não autenticado'
-      );
-
-      window.location.href =
-      'login.html';
-
-      return;
-    }
-
+    const nascimento =
+    document.getElementById("nascimento").value;
+   
     const ultimaMenstruacao =
     document.getElementById(
       'ultimaMenstruacao'
@@ -54,6 +42,11 @@ form.addEventListener('submit', async (event) => {
       .split('T')[0];
 
     const dadosCiclo = {
+
+      nome: usuarioSalvo.nome,
+      email: usuarioSalvo.email,
+      senha: usuarioSalvo.senha,
+      nascimento: nascimento,
 
       dataInicio:
       ultimaMenstruacao,
@@ -85,7 +78,7 @@ form.addEventListener('submit', async (event) => {
 
       const response =
       await fetch(
-        'http://localhost:8080/api/ciclos',
+        'http://localhost:8080/api/auth/register',
         {
 
           method:'POST',
@@ -93,9 +86,6 @@ form.addEventListener('submit', async (event) => {
           headers:{
 
             'Content-Type':'application/json',
-
-            'Authorization':
-            `Bearer ${token}`
 
           },
 
@@ -114,7 +104,7 @@ form.addEventListener('submit', async (event) => {
       if(response.ok){
 
         alert(
-          'Ciclo salvo com sucesso!'
+          'Cadastro realizado com sucesso!'
         );
 
         window.location.href =
@@ -124,7 +114,7 @@ form.addEventListener('submit', async (event) => {
 
         alert(
           data.mensagem ||
-          'Erro ao salvar ciclo'
+          'Erro ao salvar o seu cadastro. :('
         );
 
       }
