@@ -52,18 +52,20 @@ async function cadastrar(e) {
     .split("T")[0];
 
   const cadastroCompleto = {
-    nome: usuarioSalvo.nome,
-    email: usuarioSalvo.email,
-    senha: usuarioSalvo.senha,
-    nascimento: nascimento,
-    ultimaMenstruacao: ultimaMenstruacao,
-    duracaoCiclo: duracaoCiclo,
-    duracaoMenstruacao: duracaoMenstruacao,
+  nome: usuarioSalvo.nome,
+  email: usuarioSalvo.email,
+  senha: usuarioSalvo.senha,
+  nascimento: nascimento,
+
+  dadosCiclo: {
     dataInicio: ultimaMenstruacao,
     dataFim: dataFim,
-    proximaPrevisao: proximaPrevisao,
+    duracaoCiclo: duracaoCiclo,
+    duracaoMenstruacao: duracaoMenstruacao,
+    ultimaMenstruacao: ultimaMenstruacao,
     intensidadeFluxo: "MEDIO"
-  };
+  }
+};
 
   console.log(cadastroCompleto);
 
