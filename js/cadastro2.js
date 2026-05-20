@@ -58,11 +58,12 @@ async function cadastrar(e) {
   nascimento: nascimento,
 
   dadosCiclo: {
-    dataInicio: ultimaMenstruacao,
+    ultimaMenstruacao: ultimaMenstruacao,
     dataFim: dataFim,
     duracaoCiclo: duracaoCiclo,
     duracaoMenstruacao: duracaoMenstruacao,
     ultimaMenstruacao: ultimaMenstruacao,
+    proximaPrevisao: proximaPrevisao,
     intensidadeFluxo: "MEDIO"
   }
 };
