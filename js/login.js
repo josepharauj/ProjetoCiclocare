@@ -1,13 +1,12 @@
 const form = document.getElementById('loginForm');
-form.addEventListener('submit', async (e) => {
+const usuarioId = localStorage.getItem("usuarioId");
 
+form.addEventListener('submit', login);
+
+async function login(e) {
   e.preventDefault();
-
-  const email =
-    document.getElementById('email').value;
-
-  const senha =
-    document.getElementById('senha').value;
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
 
   const dadosLogin = {
     email,
@@ -15,53 +14,26 @@ form.addEventListener('submit', async (e) => {
   };
 
   try {
-
-    const response = await fetch(
-      'http://localhost:8080/api/auth/login',
-      {
-
-        method: 'POST',
-
+    const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
-
         body: JSON.stringify(dadosLogin)
-
       }
     );
 
-    const data = await response.json();
-
     if (response.ok) {
-
-      localStorage.setItem(
-        'token',
-        data.dados.token
-      );
-
-      localStorage.setItem(
-        'usuario',
-        JSON.stringify(data.dados.usuario)
-      );
-
-      alert('Login realizado com sucesso!');
-
-      // REDIRECIONA
-      window.location.href = 'index.html';
-
+      const data = await response.json();
+      localStorage.setItem("usuarioId", data.dados.usuario.id);
+      
+      localStorage.setItem("token", data.dados.token);
+      window.location.href = "index.html";
     } else {
-
-      alert(data.mensagem);
-
+      alert("E-mail ou senha inválidos!")
     }
-
   } catch (error) {
-
     console.error(error);
-
-    alert('Erro ao conectar com servidor');
-
+    alert("Erro ao conectar com o servidor");
   }
-
-});
+}

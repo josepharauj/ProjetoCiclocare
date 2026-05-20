@@ -58,6 +58,10 @@ usuarioInfo.addEventListener("click", () => {
 
 });
 
+
+//AQUI INICIA O JS DO CORPO DA TELA
+
+
 // =========================
 // CHIPS INTERATIVOS
 // =========================
@@ -174,7 +178,125 @@ if(removerFotoBtn){
 
 }
 
+// =========================
+// EDITAR INPUTS
+// =========================
 
+const editIcons = document.querySelectorAll(".edit-icon");
+
+editIcons.forEach((icon) => {
+
+  icon.addEventListener("click", () => {
+
+  
+
+    // PEGA O CONTAINER
+
+    const inputGroup = icon.closest(".input-group");
+
+    // PEGA INPUT
+
+    const input = inputGroup.querySelector("input");
+
+    // REMOVE DISABLED
+
+    input.removeAttribute("disabled");
+
+    // FOCO
+
+    input.focus();
+
+  });
+
+});
+
+// =========================
+// SALVAR DADOS PESSOAIS
+// =========================
+
+const salvarDadosBtn = document.getElementById("salvarDadosPessoais");
+
+const mensagemDados = document.getElementById("mensagemDados");
+
+// INPUTS
+
+const inputsDados = document.querySelectorAll(
+  ".input-group input"
+);
+
+// VALORES ORIGINAIS
+
+const valoresOriginais = [];
+
+inputsDados.forEach((input) => {
+
+  valoresOriginais.push(input.value);
+
+});
+
+
+// CLICK SALVAR
+
+salvarDadosBtn.addEventListener("click", () => {
+
+  let alterou = false;
+
+  let vazio = false;
+
+  // VERIFICA INPUTS
+
+  inputsDados.forEach((input, index) => {
+
+    // CAMPO VAZIO
+
+    if(input.value.trim() === ""){
+
+      vazio = true;
+
+    }
+
+    // ALTERAÇÃO
+
+    if(input.value !== valoresOriginais[index]){
+
+      alterou = true;
+
+    }
+
+  });
+
+  // ERRO
+
+  if(vazio){
+
+    mensagemDados.innerText =
+    "❌ Preencha todos os campos.";
+
+    mensagemDados.style.color = "#d9534f";
+
+    return;
+  }
+
+  // SEM ALTERAÇÃO
+
+  if(!alterou){
+
+    mensagemDados.innerText =
+    "⚠ Nenhuma alteração foi realizada.";
+
+    mensagemDados.style.color = "#c58b00";
+
+    return;
+  }
+
+  // SUCESSO
+
+  mensagemDados.innerText =
+  "✔ Dados atualizados com sucesso.";
+
+  mensagemDados.style.color = "#4c8b5f";
+
+});
 // =========================
 // BOTÃO CICLO
 // =========================
@@ -190,7 +312,6 @@ if(atualizarCicloBtn){
   });
 
 }
-
 
 // =========================
 // BOTÃO LEMBRETE
