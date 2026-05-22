@@ -341,7 +341,13 @@ async function exibirDashboard() {
     cycleData = {
       lastPeriodStart: data.ultimaMenstruacao,
       cycleLength: data.duracaoCiclo,
-      periodLength: data.duracaoMenstruacao
+      periodLength: data.duracaoMenstruacao,
+      nextPeriodStart: data.proximaMenstruacaoInicio,
+      nextPeriodEnd: data.proximaMenstruacaoFim,
+      fertilePeriodStart: data.janelaFertilInicio,
+      fertilePeriodEnd: data.janelaFertilFim,
+      ovulationPredict: data.previsaoOvulacao,
+      message: data.mensagemCiclo 
     }
 
     atualizarDashboard(data);
