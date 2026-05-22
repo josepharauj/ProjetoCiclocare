@@ -188,12 +188,13 @@ function renderCalendar(date) {
 
 if (prevMonth) {
 
-  prevMonth.addEventListener("click", () => {
+  prevMonth.addEventListener("click", async () => {
 
     currentDate.setMonth(
       currentDate.getMonth() - 1
     );
-
+    
+    await carregarCiclosCalendario(currentDate);
     renderCalendar(currentDate);
 
   });
@@ -203,12 +204,13 @@ if (prevMonth) {
 
 if (nextMonth) {
 
-  nextMonth.addEventListener("click", () => {
+  nextMonth.addEventListener("click", async () => {
 
     currentDate.setMonth(
       currentDate.getMonth() + 1
     );
 
+    await carregarCiclosCalendario(currentDate);
     renderCalendar(currentDate);
 
   });
@@ -219,6 +221,7 @@ if (nextMonth) {
 //=================================================
 
 let cycleData = null;
+let ciclosCalendario = [];
 
 function parseLocalDate(dateString) {
   const [year, month, day] = dateString.split("-").map(Number);
@@ -241,8 +244,50 @@ function daysBetween(startDate, targetDate) {
   return Math.floor((target - start) / 86400000);
 }
 
+async function carregarCiclosCalendario(date) {
+  const token = localStorage.getItem("token");
+
+  const year = date.getFullYear();
+  const month = date.getMonth();
+
+  const inicio = new Date(year, month, 1);
+  const fim = new Date(year, month + 1, 0);
+
+  const inicioFormatado = inicio.toISOString().split("T")[0];
+  const fimFormatado = fim.toISOString().split("T")[0];
+
+  const response = await fetch(
+    `http://localhost:8080/api/ciclos/calendario?inicio=${inicioFormatado}&fim=${fimFormatado}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+
+  const data = await response.json();
+
+  ciclosCalendario = data.dados || [];
+}
+
 function isMenstruationDay(date) {
+  const existeCicloReal =
+    ciclosCalendario.some(ciclo => {
+      const inicio =
+        parseLocalDate(ciclo.dataInicio);
+
+      const fim =
+        parseLocalDate(ciclo.dataFim);
+
+      return date >= inicio && date <= fim;
+    });
+
+  if (existeCicloReal) {
+    return true;
+  }
+
   if (!cycleData) { return false; }
+
   const lastPeriodStart = parseLocalDate(cycleData.lastPeriodStart);
   const daysFromStart = daysBetween(lastPeriodStart, date);
 
@@ -351,6 +396,7 @@ async function exibirDashboard() {
     }
 
     atualizarDashboard(data);
+    await carregarCiclosCalendario(currentDate);
     renderCalendar(currentDate);
   
   } catch (error) {
@@ -376,35 +422,3 @@ if(logoutBtn){
   });
 
 }
-// já executado por exibirDashboard()
-/* async function carregarDashboard(){
-
-  const token =
-  localStorage.getItem('token');
-
-  try{
-
-    const response =
-    await fetch(
-      'http://localhost:8080/api/dashboard',
-      {
-
-        headers:{
-          'Authorization':
-          `Bearer ${token}`
-        }
-
-      }
-    );
-
-    const data =
-    await response.json();
-
-    console.log(data);
-
-  }catch(error){
-    console.error(error);
-  }
-}
-
-carregarDashboard(); */
