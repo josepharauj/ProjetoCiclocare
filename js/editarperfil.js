@@ -211,6 +211,111 @@ editIcons.forEach((icon) => {
 });
 
 // =========================
+// CARREGAR DADOS USUÁRIO
+// =========================
+
+document.addEventListener(
+  "DOMContentLoaded",
+  carregarDadosUsuario
+);
+
+async function carregarDadosUsuario() {
+
+  const usuarioId =
+  localStorage.getItem("usuarioId");
+
+  if (!usuarioId) {
+    alert("Usuário não encontrado.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  try {
+
+    const response = await fetch(
+      `http://localhost:8082/api/usuarios/${usuarioId}`
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(
+        data.mensagem ||
+        "Erro ao carregar perfil."
+      );
+      return;
+    }
+
+    const usuario = data.dados;
+
+    document.getElementById("nome").value =
+    usuario.nome;
+
+    document.getElementById("email").value =
+    usuario.email;
+
+    document.getElementById("dataNascimento").value =
+    usuario.dataNascimento;
+
+    document.getElementById("idade").value =
+    calcularIdade(usuario.dataNascimento) + " anos";
+
+  } catch(error) {
+
+    console.error(error);
+
+    alert(
+      "Erro ao conectar com servidor."
+    );
+
+  }
+
+}
+
+// =========================
+// CALCULAR IDADE
+// =========================
+
+function calcularIdade(dataNascimento) {
+
+  const nascimento =
+  new Date(`${dataNascimento}T00:00:00`);
+
+  const hoje = new Date();
+
+  let idade =
+  hoje.getFullYear() -
+  nascimento.getFullYear();
+
+  const mesAtual =
+  hoje.getMonth();
+
+  const diaAtual =
+  hoje.getDate();
+
+  const mesNascimento =
+  nascimento.getMonth();
+
+  const diaNascimento =
+  nascimento.getDate();
+
+  if (
+    mesAtual < mesNascimento ||
+    (
+      mesAtual === mesNascimento &&
+      diaAtual < diaNascimento
+    )
+  ) {
+
+    idade--;
+
+  }
+
+  return idade;
+
+}
+
+// =========================
 // SALVAR DADOS PESSOAIS
 // =========================
 
@@ -289,14 +394,71 @@ salvarDadosBtn.addEventListener("click", () => {
     return;
   }
 
-  // SUCESSO
+  // =========================
+// ENVIAR PARA BACKEND
+// =========================
+
+const usuarioId =
+localStorage.getItem("usuarioId");
+
+const dadosAtualizados = {
+
+  nome:
+  document.getElementById("nome").value,
+
+  email:
+  document.getElementById("email").value,
+
+  dataNascimento:
+  document.getElementById("dataNascimento").value
+
+};
+
+fetch(
+  `http://localhost:8080/api/usuarios/${usuarioId}`,
+  {
+
+    method: "PUT",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(dadosAtualizados)
+
+  }
+
+)
+
+.then(response => response.json())
+
+.then(data => {
 
   mensagemDados.innerText =
   "✔ Dados atualizados com sucesso.";
 
-  mensagemDados.style.color = "#4c8b5f";
+  mensagemDados.style.color =
+  "#4c8b5f";
+
+})
+
+.catch(error => {
+
+  console.error(error);
+
+  mensagemDados.innerText =
+  "❌ Erro ao atualizar dados.";
+
+  mensagemDados.style.color =
+  "#d9534f";
 
 });
+
+});
+
+
+
+
 // =========================
 // BOTÃO CICLO
 // =========================
