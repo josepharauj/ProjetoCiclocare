@@ -49,6 +49,16 @@ form.addEventListener('submit', async (event) => {
   const senha =
   senhaInput.value.trim();
 
+  if (nome.length < 3) {
+    alert("Nome deve ter pelo menos 3 caracteres.");
+    return;
+  }
+
+  if (senha.length < 6) {
+    alert("Senha deve ter pelo menos 6 caracteres.");
+    return;
+  }
+
   if(
     nome === '' ||
     email === '' ||

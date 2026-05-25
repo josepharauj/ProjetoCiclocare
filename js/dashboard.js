@@ -307,6 +307,13 @@ function isMenstruationDay(date) {
 function alterarCorCirculo(fase) {
   const cycleCircle = document.getElementById("cycle-circle");
 
+  cycleCircle.classList.remove(
+    "menstrual",
+    "folicular",
+    "ovulacao",
+    "lutea"
+  );
+
   switch (fase) {
     case "MENSTRUAL":
       cycleCircle.classList.add("menstrual");
