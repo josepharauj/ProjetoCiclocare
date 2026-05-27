@@ -11,6 +11,7 @@
   --rosaMedio:#f3c9d7;
   --lilas:#eccff3;
   --branco:#fff;
+  --pink-light:#fff1f5;
 }
 
 body{
@@ -76,6 +77,7 @@ body{
   display:flex;
   align-items:center;
   gap:50px;
+  margin-left:60px;
 }
 
 .menu a{
@@ -100,80 +102,73 @@ body{
   transform:translateY(-2px);
 }
 
-/* DROPDOWN */
+/* NAVBAR RIGHT */
 
-.dropdown{
-  position:relative;
-}
-
-.dropdown-btn{
-
-  background:none;
-  border:none;
+.navbar-right{
 
   display:flex;
-  flex-direction:column;
   align-items:center;
-
-  cursor:pointer;
-
-  color:var(--rosa);
-
-  font-size:13px;
-
-  transition:0.3s;
+  gap:22px;
 }
 
-.dropdown-btn i{
-  font-size:22px;
-  margin-bottom:4px;
+.dropdown {
+  position: relative;
 }
 
-.dropdown-btn:hover{
-  transform:translateY(-2px);
+.dropdown-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background: transparent;
+  color: var(--rosa);
+  font-family: inherit;
+  cursor: pointer;
 }
 
-.dropdown-content{
+.dropdown-btn i {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
 
+.dropdown-content {
   position:absolute;
+    top:70px;
+    left:50%;
 
-  top:70px;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  background:white;
-
-  min-width:180px;
-
-  border-radius:12px;
-
-  padding:10px 0;
-
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
-
-  display:none;
-
-  flex-direction:column;
-
-  z-index:999;
+    transform:translateX(-50%);
+    background:white;
+    min-width:180px;
+    border-radius:12px;
+    padding:10px 0;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    display:none;
+    flex-direction:column;
+    z-index:999;
 }
 
-.dropdown-content a{
+.dropdown-content.active{
 
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-content a {
   padding:12px 20px;
 
-  text-decoration:none;
+    text-decoration:none;
 
-  color:#8F5353;
+    color:#8F5353;
 
-  font-size:14px;
+    font-size:14px;
 
-  transition:0.2s;
+    transition:0.2s;
+
+    white-space:nowrap;
 }
 
-.dropdown-content a:hover{
-  background:#f8e7e7;
+.dropdown-content a:hover {
+  background: var(--pink-light);
 }
 
 
@@ -200,14 +195,22 @@ body{
 }
 
 .usuario{
+  position: relative;
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+}
+
+.usuario-info{
+
   display:flex;
   align-items:center;
   gap:10px;
 }
 
 .usuario img{
-  width:40px;
-  height:40px;
+  width:42px;
+  height:42px;
 
   border-radius:50%;
 
@@ -215,6 +218,7 @@ body{
 }
 
 .usuario span{
+  color:#8F5353;
   font-weight:600;
 }
 

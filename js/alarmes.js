@@ -1,5 +1,30 @@
 // ========================================
-// DROPDOWN MENU
+// CONFIG API
+// ========================================
+
+const API_URL = "http://localhost:8080/api/alarmes";
+
+// ========================================
+// USUÁRIA LOGADA
+// ========================================
+function carregarNomeUsuario(){
+
+        const usuario =
+        JSON.parse(
+            localStorage.getItem('usuario')
+        );
+
+        const nomeUsuario =
+        document.getElementById('nomeUsuario');
+
+        if(usuario && nomeUsuario){
+
+            nomeUsuario.textContent =
+            `Olá, ${usuario.nome}`;
+        }
+}
+// ========================================
+// ELEMENTOS GLOBAIS
 // ========================================
 
 const dropdownBtn =
@@ -7,24 +32,6 @@ document.querySelector(".dropdown-btn");
 
 const dropdownContent =
 document.querySelector(".dropdown-content");
-
-dropdownBtn.addEventListener("click", () => {
-
-  if(dropdownContent.style.display === "flex"){
-
-    dropdownContent.style.display = "none";
-
-  } else {
-
-    dropdownContent.style.display = "flex";
-
-  }
-
-});
-
-// ========================================
-// SIDEBAR NOTIFICAÇÕES
-// ========================================
 
 const bellIcon =
 document.querySelector(".bell-icon");
@@ -35,28 +42,49 @@ document.querySelector(".notification-sidebar");
 const closeSidebar =
 document.querySelector(".close-sidebar");
 
-// ========================================
-// NOTIFICAÇÕES INTERNAS
-// ========================================
+const usuarioInfo =
+document.querySelector(".usuario-info");
+
+const profileDropdown =
+document.querySelector(".profile-dropdown");
 
 const notificationBadge =
-document.getElementById(
-  "notification-badge"
-);
+document.getElementById("notification-badge");
 
-// LISTA SIDEBAR
+const alarmForm =
+document.getElementById("alarm-form");
+
+const alarmList =
+document.getElementById("alarm-list");
+
+// ========================================
+// DADOS
+// ========================================
+
+let alarmes = [];
 
 let notificacoes = JSON.parse(
   localStorage.getItem("notificacoes")
 ) || [];
 
-// ABRIR
+let editandoId = null;
+// ========================================
+// DROPDOWN MENU
+// ========================================
+
+dropdownBtn.addEventListener("click", () => {
+
+  dropdownContent.classList.toggle("active");
+
+});
+
+// ========================================
+// SIDEBAR NOTIFICAÇÕES
+// ========================================
 
 bellIcon.addEventListener("click", () => {
 
   notificationSidebar.classList.add("active");
-
-  // MARCAR COMO LIDAS
 
   notificacoes.forEach((n) => {
 
@@ -73,8 +101,6 @@ bellIcon.addEventListener("click", () => {
 
 });
 
-// FECHAR
-
 closeSidebar.addEventListener("click", () => {
 
   notificationSidebar.classList.remove("active");
@@ -85,12 +111,6 @@ closeSidebar.addEventListener("click", () => {
 // DROPDOWN PERFIL
 // ========================================
 
-const usuarioInfo =
-document.querySelector(".usuario-info");
-
-const profileDropdown =
-document.querySelector(".profile-dropdown");
-
 usuarioInfo.addEventListener("click", () => {
 
   profileDropdown.classList.toggle("active");
@@ -98,10 +118,8 @@ usuarioInfo.addEventListener("click", () => {
 });
 
 // ========================================
-// NOTIFICATION API
+// PERMISSÃO NOTIFICAÇÃO
 // ========================================
-
-// PEDIR PERMISSÃO
 
 async function pedirPermissaoNotificacao(){
 
@@ -114,98 +132,34 @@ async function pedirPermissaoNotificacao(){
 }
 
 // ========================================
-// CRUD ALARMES
+// BADGE
 // ========================================
 
-const alarmForm =
-document.getElementById("alarm-form");
+function atualizarBadge(){
 
-const alarmList =
-document.getElementById("alarm-list");
+  const naoLidas =
+  notificacoes.filter(
+    n => !n.lida
+  ).length;
 
-// ========================================
-// LOCAL STORAGE
-// ========================================
+  if(naoLidas > 0){
 
-let alarmes = JSON.parse(
-  localStorage.getItem("alarmes")
-) || [];
+    notificationBadge.style.display =
+    "flex";
 
-// ========================================
-// CONTROLE EDIÇÃO
-// ========================================
+    notificationBadge.textContent =
+    naoLidas;
 
-let editandoIndex = null;
+  } else {
 
-// ========================================
-// CALCULAR PRÓXIMO HORÁRIO
-// ========================================
-
-function calcularProximoHorario(
-  inicio,
-  frequencia
-){
-
-  const agora = new Date();
-
-  // HORA INICIAL
-
-  const [horaInicial, minutoInicial] =
-  inicio.split(":").map(Number);
-
-  // DATA BASE
-
-  let proximo =
-  new Date();
-
-  proximo.setHours(
-    horaInicial,
-    minutoInicial,
-    0,
-    0
-  );
-
-  // ENCONTRAR PRÓXIMO CICLO
-
-  while(proximo <= agora){
-
-    proximo.setHours(
-      proximo.getHours() + frequencia
-    );
-
+    notificationBadge.style.display =
+    "none";
   }
-
-  // FORMATAR
-
-  const hora =
-  proximo
-    .getHours()
-    .toString()
-    .padStart(2, "0");
-
-  const minuto =
-  proximo
-    .getMinutes()
-    .toString()
-    .padStart(2, "0");
-
-  // HOJE OU AMANHÃ
-
-  const hoje =
-  new Date().toDateString();
-
-  const ehHoje =
-  proximo.toDateString() === hoje;
-
-  const periodo =
-  ehHoje ? "Hoje" : "Amanhã";
-
-  return `${periodo} às ${hora}:${minuto}`;
 
 }
 
 // ========================================
-// RENDERIZAR NOTIFICAÇÕES
+// RENDER NOTIFICAÇÕES
 // ========================================
 
 function renderizarNotificacoes(){
@@ -215,11 +169,7 @@ function renderizarNotificacoes(){
     ".notification-list"
   );
 
-  // LIMPAR
-
   container.innerHTML = "";
-
-  // SEM NOTIFICAÇÕES
 
   if(notificacoes.length === 0){
 
@@ -237,8 +187,6 @@ function renderizarNotificacoes(){
 
     return;
   }
-
-  // RENDERIZAR
 
   notificacoes.forEach((notificacao) => {
 
@@ -278,28 +226,101 @@ function renderizarNotificacoes(){
   atualizarBadge();
 
 }
+
 // ========================================
-// BADGE
+// CALCULAR PRÓXIMO HORÁRIO
 // ========================================
-function atualizarBadge(){
 
-  const naoLidas =
-  notificacoes.filter(
-    n => !n.lida
-  ).length;
+function calcularProximoHorario(
+  inicio,
+  frequencia
+){
 
-  if(naoLidas > 0){
+  const agora = new Date();
 
-    notificationBadge.style.display =
-    "flex";
-    notificationBadge.textContent =
-    naoLidas;
+  const [horaInicial, minutoInicial] =
+  inicio.split(":").map(Number);
 
-  } else {
-    notificationBadge.style.display =
-    "none";
+  let proximo = new Date();
+
+  proximo.setHours(
+    horaInicial,
+    minutoInicial,
+    0,
+    0
+  );
+
+  while(proximo <= agora){
+
+    proximo.setHours(
+      proximo.getHours() +
+      parseInt(frequencia)
+    );
 
   }
+
+  const hora =
+  proximo
+    .getHours()
+    .toString()
+    .padStart(2, "0");
+
+  const minuto =
+  proximo
+    .getMinutes()
+    .toString()
+    .padStart(2, "0");
+
+  const ehHoje =
+  proximo.toDateString() ===
+  new Date().toDateString();
+
+  const periodo =
+  ehHoje ? "Hoje" : "Amanhã";
+
+  return `${periodo} às ${hora}:${minuto}`;
+
+}
+
+// ========================================
+// CARREGAR BACKEND
+// ========================================
+
+async function carregarAlarmes(){
+
+  try {
+      const token =
+      localStorage.getItem("token");
+
+      const response =
+      await fetch(API_URL, {
+
+        method:"GET",
+
+        headers:{
+          "Authorization":
+          `Bearer ${token}`
+        }
+      });
+
+      if(!response.ok){
+
+        throw new Error(
+          `Erro HTTP ${response.status}`
+        );
+      }
+
+      alarmes =
+      await response.json();
+      renderizarAlarmes();
+
+    } catch(erro){
+
+      console.error(
+        "Erro ao carregar alarmes",
+        erro
+      );
+    }
 }
 
 // ========================================
@@ -325,12 +346,7 @@ function renderizarAlarmes(){
     return;
   }
 
-  alarmes.forEach((alarme, index) => {
-
-    const card =
-    document.createElement("div");
-
-    card.classList.add("alarm-item");
+  alarmes.forEach((alarme) => {
 
     let icone = "💊";
 
@@ -338,11 +354,17 @@ function renderizarAlarmes(){
 
       icone = "🌸";
     }
+
     const proximoHorario =
     calcularProximoHorario(
-      alarme.inicio,
-      parseInt(alarme.frequencia)
+      alarme.horaInicio,
+      alarme.frequencia
     );
+
+    const card =
+    document.createElement("div");
+
+    card.classList.add("alarm-item");
 
     card.innerHTML = `
 
@@ -377,7 +399,7 @@ function renderizarAlarmes(){
 
         <span>
           Início:
-          ${alarme.inicio}
+          ${alarme.horaInicio}
         </span>
 
         <span>
@@ -396,20 +418,16 @@ function renderizarAlarmes(){
 
         <button
           class="btn-edit"
-          onclick="editarAlarme(${index})"
+          onclick="editarAlarme(${alarme.id})"
         >
-
           Editar
-
         </button>
 
         <button
           class="btn-delete"
-          onclick="deletarAlarme(${index})"
+          onclick="deletarAlarme(${alarme.id})"
         >
-
           Excluir
-
         </button>
 
       </div>
@@ -423,127 +441,165 @@ function renderizarAlarmes(){
 }
 
 // ========================================
-// SALVAR STORAGE
+// SALVAR / EDITAR
 // ========================================
 
-function salvarLocalStorage(){
+alarmForm.addEventListener(
+  "submit",
+  async (e) => {
 
-  localStorage.setItem(
-    "alarmes",
-    JSON.stringify(alarmes)
-  );
+    e.preventDefault();
 
-}
+    await pedirPermissaoNotificacao();
 
-// ========================================
-// ADICIONAR
-// ========================================
+    const dados = {
 
-alarmForm.addEventListener("submit", async (e) => {
+      tipo:
+      document.getElementById(
+        "alarm-type"
+      ).value,
 
-  e.preventDefault();
+      nome:
+      document.getElementById(
+        "alarm-name"
+      ).value,
 
-  // PERMISSÃO
+      frequencia:
+      document.getElementById(
+        "alarm-frequency"
+      ).value,
 
-  await pedirPermissaoNotificacao();
+      horaInicio:
+      document.getElementById(
+        "alarm-start"
+      ).value,
 
-  // VALORES
+      observacao:
+      document.getElementById(
+        "alarm-note"
+      ).value,
 
-  const tipo =
-  document.getElementById("alarm-type").value;
+      ativo:true
 
-  const nome =
-  document.getElementById("alarm-name").value;
+    };
 
-  const frequencia =
-  document.getElementById("alarm-frequency").value;
+    try {
 
-  const inicio =
-  document.getElementById("alarm-start").value;
+      let response;
 
-  const observacao =
-  document.getElementById("alarm-note").value;
+      // EDITAR
+      if(editandoId){
 
-  // OBJETO
+          response = await fetch(
 
-  const novoAlarme = {
+              `${API_URL}/${editandoId}`,
 
-    tipo,
-    nome,
-    frequencia,
-    inicio,
-    observacao,
-    ultimoDisparo: null
+              {
 
-  };
+                  method:"PUT",
 
-  // ========================================
-  // EDITAR OU ADICIONAR
-  // ========================================
+                  headers:{
 
-  if(editandoIndex !== null){
+                      "Content-Type":
+                      "application/json",
 
-    // MANTER ÚLTIMO DISPARO
+                      "Authorization":
+                      `Bearer ${localStorage.getItem("token")}`
 
-    novoAlarme.ultimoDisparo =
-    alarmes[editandoIndex]
-    .ultimoDisparo;
+                  },
 
-    // ATUALIZAR
+                  body: JSON.stringify(dados)
+              }
+          );
 
-    alarmes[editandoIndex] =
-    novoAlarme;
+          if(response.ok){
 
-    // RESETAR EDIÇÃO
+              alert(
+                  "Alarme atualizado!"
+              );
 
-    editandoIndex = null;
+          } else {
 
-    // BOTÃO VOLTA
+              alert(
+                  "Erro ao atualizar alarme."
+              );
+          }
 
-    document.querySelector(
-      ".btn-save"
-    ).textContent =
-    "Ativar Alarme";
+      } else {
 
-    alert(
-      "Alarme atualizado com sucesso!"
-    );
+          // NOVO
+          response = await fetch(
 
-  } else {
+              `${API_URL}/salvar`,
 
-    // NOVO
+              {
 
-    alarmes.push(novoAlarme);
+                  method:"POST",
 
-    alert(
-      "Alarme ativado com sucesso!"
-    );
+                  headers:{
 
-  }
+                      "Content-Type":
+                      "application/json",
 
-  // SALVAR
+                      "Authorization":
+                      `Bearer ${localStorage.getItem("token")}`
 
-  salvarLocalStorage();
+                  },
 
-  // RENDER
+                  body: JSON.stringify(dados)
+              }
+          );
 
-  renderizarAlarmes();
+          if(response.ok){
 
-  // RESET
+              alert(
+                  "Alarme criado!"
+              );
 
-  alarmForm.reset();
+          } else {
 
-});
+              alert(
+                  "Erro ao criar alarme."
+              );
+          }
+      }
+
+      if(response.ok){
+
+          alarmForm.reset();
+
+          editandoId = null;
+
+          document.querySelector(
+              ".btn-save"
+          ).textContent =
+          "Ativar Alarme";
+
+          carregarAlarmes();
+      }
+
+      } catch(erro){
+
+          console.error(erro);
+
+          alert(
+              "Erro ao salvar alarme."
+          );
+      }
+  });
+
 // ========================================
 // EDITAR
 // ========================================
 
-function editarAlarme(index){
+function editarAlarme(id){
 
   const alarme =
-  alarmes[index];
+  alarmes.find(
+    a => a.id === id
+  );
 
-  // PREENCHER FORM
+  if(!alarme) return;
 
   document.getElementById(
     "alarm-type"
@@ -559,27 +615,18 @@ function editarAlarme(index){
 
   document.getElementById(
     "alarm-start"
-  ).value = alarme.inicio;
+  ).value = alarme.horaInicio;
 
   document.getElementById(
     "alarm-note"
   ).value = alarme.observacao;
 
-  // EDITANDO
+  editandoId = id;
 
-  editandoIndex = index;
-
-  // ALTERAR BOTÃO
-
-  const botao =
   document.querySelector(
     ".btn-save"
-  );
-
-  botao.textContent =
+  ).textContent =
   "Salvar Alterações";
-
-  // SCROLL SUAVE
 
   window.scrollTo({
 
@@ -595,26 +642,108 @@ function editarAlarme(index){
 // EXCLUIR
 // ========================================
 
-function deletarAlarme(index){
+async function deletarAlarme(id){
 
   const confirmar =
-  confirm("Deseja excluir este alarme?");
+  confirm(
+    "Deseja excluir este alarme?"
+  );
 
-  if(!confirmar){
+  if(!confirmar) return;
 
-    return;
+  try {
+
+    await fetch(
+      `${API_URL}/${id}`,
+      {
+
+        method:"DELETE",
+        headers:{
+          "Authorization":
+          `Bearer ${localStorage.getItem("token")}`
+        }
+      }
+    );
+
+    carregarAlarmes();
+
+  } catch(erro){
+
+    console.error(erro);
+
   }
-
-  alarmes.splice(index, 1);
-
-  salvarLocalStorage();
-
-  renderizarAlarmes();
 
 }
 
 // ========================================
-// VERIFICAR HORÁRIOS
+// NOTIFICAÇÃO
+// ========================================
+
+function mostrarNotificacao(alarme){
+
+  let emoji = "💊";
+
+  if(alarme.tipo === "contraceptivo"){
+
+    emoji = "🌸";
+  }
+
+  new Notification(
+
+    `${emoji} Hora do seu alarme!`,
+
+    {
+
+      body:
+      `${alarme.nome}
+⏰ ${alarme.frequencia}h
+🕒 ${alarme.horaInicio}`,
+
+      icon:
+      "./assets/images/icone.png"
+
+    }
+
+  );
+
+  const horario =
+  new Date().toLocaleTimeString(
+    "pt-BR",
+    {
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
+
+  notificacoes.unshift({
+
+    titulo:
+    `${emoji} Hora do seu alarme!`,
+
+    mensagem:
+    `${alarme.nome}
+• ${alarme.frequencia}h`,
+
+    horario,
+
+    lida:false
+
+  });
+
+  localStorage.setItem(
+
+    "notificacoes",
+
+    JSON.stringify(notificacoes)
+
+  );
+
+  renderizarNotificacoes();
+
+}
+
+// ========================================
+// VERIFICAR
 // ========================================
 
 function verificarAlarmes(){
@@ -627,8 +756,6 @@ function verificarAlarmes(){
   const minutoAtual =
   agora.getMinutes();
 
-  // APENAS HORAS CHEIAS
-
   if(minutoAtual !== 0){
 
     return;
@@ -638,53 +765,23 @@ function verificarAlarmes(){
 
     const horaInicio =
     parseInt(
-      alarme.inicio.split(":")[0]
+      alarme.horaInicio.split(":")[0]
     );
 
     const frequencia =
     parseInt(alarme.frequencia);
 
-    // CALCULAR DIFERENÇA
-
     let diferenca =
     horaAtual - horaInicio;
-
-    // AJUSTE VIRADA DIA
 
     if(diferenca < 0){
 
       diferenca += 24;
     }
 
-    // VERIFICAR HORÁRIO
-
     if(diferenca % frequencia === 0){
 
-      // EVITAR REPETIR
-
-      const hoje =
-      new Date().toDateString();
-
-      const identificador =
-      `${hoje}-${horaAtual}-${alarme.nome}`;
-
-      if(
-        alarme.ultimoDisparo === identificador
-      ){
-
-        return;
-      }
-
-      // NOTIFICAÇÃO
-
       mostrarNotificacao(alarme);
-
-      // SALVAR DISPARO
-
-      alarme.ultimoDisparo =
-      identificador;
-
-      salvarLocalStorage();
 
     }
 
@@ -693,109 +790,8 @@ function verificarAlarmes(){
 }
 
 // ========================================
-// NOTIFICAÇÃO
-// ========================================
-function mostrarNotificacao(alarme){
-
-  let emoji = "💊";
-
-  if(alarme.tipo === "contraceptivo"){
-
-    emoji = "🌸";
-  }
-
-  // ========================================
-  // NOTIFICAÇÃO NAVEGADOR
-  // ========================================
-
-  new Notification(
-
-    `${emoji} Hora do seu alarme!`,
-
-    {
-
-      body:
-      `${alarme.nome}
-
-⏰ Frequência:
-${alarme.frequencia}h
-
-🕒 Início:
-${alarme.inicio}`,
-
-      icon:
-      "./assets/images/icone.png"
-
-    }
-
-  );
-
-  // ========================================
-  // SIDEBAR
-  // ========================================
-
-  const agora =
-  new Date();
-
-  const horario =
-  agora.toLocaleTimeString(
-    "pt-BR",
-    {
-      hour:"2-digit",
-      minute:"2-digit"
-    }
-  );
-
-  const novaNotificacao = {
-
-    titulo:
-    `${emoji} Hora do seu alarme!`,
-
-    mensagem:
-    `${alarme.nome}
-    • ${alarme.frequencia}h`,
-
-    horario,
-
-    lida:false
-
-  };
-
-  // ADICIONAR
-
-  notificacoes.unshift(
-    novaNotificacao
-  );
-
-  // LIMITAR
-
-  if(notificacoes.length > 20){
-
-    notificacoes.pop();
-
-  }
-
-  // SALVAR
-
-  localStorage.setItem(
-
-    "notificacoes",
-
-    JSON.stringify(notificacoes)
-
-  );
-
-  // RENDERIZAR
-
-  renderizarNotificacoes();
-
-}
-
-// ========================================
 // INTERVALO
 // ========================================
-
-// VERIFICA A CADA 1 MINUTO
 
 setInterval(() => {
 
@@ -803,14 +799,16 @@ setInterval(() => {
 
 }, 30000);
 
-
-
 // ========================================
 // INICIALIZAÇÃO
 // ========================================
 
-renderizarAlarmes();
+carregarNomeUsuario();
+
+carregarAlarmes();
 
 renderizarNotificacoes();
+
+atualizarBadge();
 
 verificarAlarmes();
