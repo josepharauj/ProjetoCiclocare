@@ -5,44 +5,24 @@
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>CicloCare | Dashboard</title>
 
   <!-- FONTES -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <!-- CSS -->
-  <link
-    rel="stylesheet"
-    href="./css/dashboard.css"
-  >
+  <link rel="stylesheet" href="./css/dashboard.css">
   <!-- ÍCONES -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  >
-    <!--Auth-->
-  <script
-          src="./js/auth.js"
-          defer
-  ></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <!--Auth-->
+  <script src="./js/auth.js" defer></script>
   <!-- JS -->
-  <script
-    src="./js/dashboard.js"
-    defer
-  ></script>
+  <script src="./js/dashboard.js" defer></script>
 
 </head>
 
@@ -76,10 +56,7 @@
   <header class="navbar">
     <!-- LOGO -->
     <div class="logo">
-      <img
-        src="./assets/images/icone.png"
-        alt="Logo"
-      >
+      <img src="./assets/images/icone.png" alt="Logo">
       <span>CicloCare</span>
 
     </div>
@@ -128,7 +105,7 @@
 
     <!-- DIREITA -->
     <div class="navbar-right">
-     
+
       <!-- SWITCH 
       <div class="pregnancy-switch">
         <span class="switch-label">
@@ -159,13 +136,10 @@
         <div class="usuario">
           <!-- BOTÃO -->
           <div class="usuario-info">
-            <img
-              src="https://i.pravatar.cc/100"
-              alt="Usuária"
-            >
-              <span id="nomeUsuario">
-                  Olá
-              </span>
+            <img src="https://i.pravatar.cc/100" alt="Usuária">
+            <span id="nomeUsuario">
+              Olá
+            </span>
           </div>
 
           <!-- DROPDOWN PERFIL -->
@@ -214,26 +188,28 @@
     <section class="dashboard-painel-esquerdo">
       <!-- CICLO -->
       <div class="cycle-circle" id="cycle-circle">
-        <h3 id="fase-ciclo">Menstruação:</h3>
-        <strong id="dia-ciclo">3º dia</strong>
+        <h3 id="fase-ciclo"></h3>
+        <strong id="dia-ciclo"></strong>
         <span id="mensagem-ciclo"></span>
         <button>
           Editar Menstruação
         </button>
       </div>
+
       <!-- CONTEÚDO -->
       <section class="conteudo-diario">
         <h2>Meu conteúdo diário</h2>
+        
         <!-- FASE -->
         <article class="quadro-fase-ciclo">
-          <h3>
-            Fase atual do ciclo: Menstrual
+          <h3 id="faseAtualCiclo">
+            Fase atual do ciclo: carregando...
           </h3>
-          <p>
-            Ainda na fase Menstrual.
-            O fluxo pode estar mais leve,
-            mas a energia continua baixa.
+
+          <p id="mensagemFaseCiclo">
+            Buscando informações do seu ciclo...
           </p>
+
           <button class="botao-rosa">
             Ver recomendações
           </button>
@@ -245,9 +221,8 @@
             <h3>
               Registre seus Sintomas
             </h3>
-            <button class="botao-sintomas" 
-            onclick="window.location.href='registrodesintomas.html'">
-                <img src="./assets/icons/botao_adicionar.png">
+            <button class="botao-sintomas" onclick="window.location.href='registrodesintomas.html'">
+              <img src="./assets/icons/botao_adicionar.png">
             </button>
           </article>
 
@@ -276,10 +251,7 @@
             </p>
 
             <div class="container-aviso-horario">
-              <img
-                src="./assets/icons/icone_relogio.png"
-                alt=""
-              >
+              <img src="./assets/icons/icone_relogio.png" alt="">
               <span>
                 08:00h
               </span>
@@ -297,42 +269,23 @@
         <header class="calendar-header">
           <h2>Calendário</h2>
           <div class="controle-mes-ano">
-            <button
-              id="prevMonth"
-              aria-label="Mês anterior"
-            >
-              <img
-                src="./assets/icons/seta_esquerda.png"
-                alt=""
-              >
+            <button id="prevMonth" aria-label="Mês anterior">
+              <img src="./assets/icons/seta_esquerda.png" alt="">
             </button>
 
             <strong id="monthYear">
               Março 2026
             </strong>
 
-            <button
-              id="nextMonth"
-              aria-label="Próximo mês"
-            >
+            <button id="nextMonth" aria-label="Próximo mês">
 
-              <img
-                id="seta_direita"
-                src="./assets/icons/seta_esquerda.png"
-                alt=""
-              >
+              <img id="seta_direita" src="./assets/icons/seta_esquerda.png" alt="">
             </button>
           </div>
 
-          <button
-            class="options-button"
-            aria-label="Opções"
-          >
+          <button class="options-button" aria-label="Opções">
 
-            <img
-              src="./assets/icons/tres_pontos.png"
-              alt=""
-            >
+            <img src="./assets/icons/tres_pontos.png" alt="">
 
           </button>
         </header>
@@ -351,10 +304,7 @@
 
         <!-- GRID -->
 
-        <div
-          class="calendar-grid"
-          id="calendarGrid"
-        ></div>
+        <div class="calendar-grid" id="calendarGrid"></div>
 
       </section>
 
@@ -365,10 +315,7 @@
         <div class="container-lembretes-cards">
           <article class="card-lembrete">
             <div class="container-lembrete-agua">
-              <img
-                src="./assets/icons/gota_agua.png"
-                alt=""
-              >
+              <img src="./assets/icons/gota_agua.png" alt="">
               <h3>Água</h3>
             </div>
 
@@ -379,18 +326,12 @@
 
             <div class="botoes-lembrete-agua">
               <button>
-                <img
-                  src="./assets/icons/botao_menos.png"
-                  alt=""
-                >
+                <img src="./assets/icons/botao_menos.png" alt="">
 
               </button>
 
               <button>
-                <img
-                  src="./assets/icons/botao_mais.png"
-                  alt=""
-                >
+                <img src="./assets/icons/botao_mais.png" alt="">
 
               </button>
             </div>

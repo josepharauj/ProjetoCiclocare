@@ -371,13 +371,24 @@ function formatarFase(fase) {
   }
 }
 
+    function atualizarConteudoDiario(data) {
+  const faseTitulo = document.getElementById("faseAtualCiclo");
+  const mensagemFase = document.getElementById("mensagemFaseCiclo");
+
+  faseTitulo.textContent =
+    `Fase atual do ciclo: ${formatarFase(data.faseCiclo)}`;
+
+  mensagemFase.textContent =
+    data.mensagemDetalhadaFase;
+}
+
 async function exibirDashboard() {  
   try {
     const usuarioId = localStorage.getItem("usuarioId");
     const token = localStorage.getItem("token");
     
     const response = await fetch(
-      `http://localhost:8080/api/usuarios/${usuarioId}/dashboard`,
+      `http://localhost:8082/api/usuarios/${usuarioId}/dashboard`,
       {
         headers: {
         Authorization: `Bearer ${token}`
@@ -402,6 +413,7 @@ async function exibirDashboard() {
       message: data.mensagemCiclo 
     }
 
+
     atualizarDashboard(data);
     await carregarCiclosCalendario(currentDate);
     renderCalendar(currentDate);
@@ -414,6 +426,15 @@ async function exibirDashboard() {
 window.onload = async () => {
   await exibirDashboard();
 }
+
+// ============================================================
+//                 MEU CONTEÚDO DIÁRIO
+// ============================================================
+
+//Aqui ele faz exatamente a mesma que o círculo menstrual faz: puxa informações do ciclo direto do banco 
+//e mostra uma mensagem personalizada de acordo com o dia do ciclo.
+
+
 
 // LOGOUT
 const logoutBtn =
