@@ -371,15 +371,21 @@ function formatarFase(fase) {
   }
 }
 
-    function atualizarConteudoDiario(data) {
+function atualizarConteudoDiario(data) {
   const faseTitulo = document.getElementById("faseAtualCiclo");
   const mensagemFase = document.getElementById("mensagemFaseCiclo");
+
+  if (!faseTitulo || !mensagemFase) {
+    return;
+  }
 
   faseTitulo.textContent =
     `Fase atual do ciclo: ${formatarFase(data.faseCiclo)}`;
 
   mensagemFase.textContent =
-    data.mensagemDetalhadaFase;
+    data.mensagemDetalhadaFase ||
+    data.mensagem ||
+    "Acompanhe seus sintomas e recomendações para entender melhor este momento do ciclo.";
 }
 
 async function exibirDashboard() {  
@@ -401,20 +407,22 @@ async function exibirDashboard() {
     }
     const data = await response.json();
 
+    console.log(data);
+
     cycleData = {
       lastPeriodStart: data.ultimaMenstruacao,
       cycleLength: data.duracaoCiclo,
       periodLength: data.duracaoMenstruacao,
-      nextPeriodStart: data.proximaMenstruacaoInicio,
-      nextPeriodEnd: data.proximaMenstruacaoFim,
+      nextPeriodStart: data.proximaPrevisao,
       fertilePeriodStart: data.janelaFertilInicio,
       fertilePeriodEnd: data.janelaFertilFim,
       ovulationPredict: data.previsaoOvulacao,
-      message: data.mensagemCiclo 
+      message: data.mensagem 
     }
 
 
     atualizarDashboard(data);
+    atualizarConteudoDiario(data);
     await carregarCiclosCalendario(currentDate);
     renderCalendar(currentDate);
   
