@@ -641,3 +641,81 @@ body{
     font-size: 2rem;
   }
 }
+
+/* ==========================================================================
+   AÇÕES DOS LEMBRETES (Ativo/Inativo, Editar, Excluir) 
+   ========================================================================== */
+
+.reminder-item {
+  background: rgba(255, 255, 255, 0.65);
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  border-left: 5px solid #f25d8a;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Estado quando o lembrete for desativado/concluído */
+.reminder-item.inactive {
+  opacity: 0.55;
+  border-left-color: #a0a0a0;
+}
+
+.reminder-item.inactive .reminder-title {
+  text-decoration: line-through;
+  color: #777 !important;
+}
+
+/* Área dos botões de ação */
+.reminder-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.reminder-actions button {
+  flex: 1;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Botão Status (Ativo/Inativo) 
+.btn-status-toggle {
+  background: #e3f2fd;
+  color: #1e88e5;
+}
+.reminder-item.inactive .btn-status-toggle {
+  background: #f5f5f5;
+  color: #616161;
+}*/
+
+/* Botão Editar */
+.btn-edit-reminder {
+  background: #ffe5ef;
+  color: #c45178;
+}
+
+/* Botão Excluir */
+.btn-delete-reminder {
+  background: #ffe0e0;
+  color: #d14d4d;
+}
+
+/* Efeitos Hover */
+.reminder-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
