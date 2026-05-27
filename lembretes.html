@@ -7,6 +7,7 @@
 
   <title>CicloCare | Lembretes</title>
 
+  <link rel="icon" href="assets/images/icone.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -175,6 +176,7 @@
             <div class="card-box">
                 <h2>Cadastro</h2>
                 <form id="reminder-form">
+                  <input type="hidden" id="edit-id" value="">
                     <div class="input-group">
                         <label for="reminder-type">Tipo de Procedimento:</label>
                         <select id="reminder-type" required>
@@ -182,6 +184,7 @@
                             <option value="consulta">Consulta Médica</option>
                             <option value="preventivo">Papanicolau</option>
                             <option value="ultrassom">Ultrassonografia</option>
+                            <option value="Exame de Sangue">Exame de Sangue</option>
                         </select>
                     </div>
 
@@ -206,6 +209,7 @@
                     </div>
 
                     <button type="submit" class="btn-save">Agendar Lembrete</button>
+                  </input>
                 </form>
             </div>
         </section>
