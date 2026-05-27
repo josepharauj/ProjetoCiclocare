@@ -580,29 +580,26 @@ input:checked + .slider:before{
   align-items: center;
   justify-content: center;
   text-align: center;
+  gap: 14px;
 }
 
 .cycle-circle h3 {
   font-family: var(--inter-font);
-  transform: translateY(-28px);
   font-size: 2rem;
-  transform: translateY(20px);
-}
-
-.cycle-circle img {
-  width: 412px;
-  height: 412px;
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 .cycle-circle strong {
   font-size: 3.4rem;
-  transform: translateY(30px);
+}
+
+.cycle-circle span {
+  max-width: 320px;
+  line-height: 1.35;
+  font-size: 1rem;
 }
 
 .cycle-circle button {
-  margin-top: 50px;
+  margin-top: 16px;
   border: none;
   border-radius: 999px;
   box-shadow: 0 8px 10px rgba(80, 40, 55, 0.35);
@@ -611,7 +608,6 @@ input:checked + .slider:before{
   padding: 8px 18px;
   color: var(--text-main);
   cursor: pointer;
-  transform: translateY(30px);
   font-size: 0.9rem;
 }
 

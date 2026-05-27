@@ -71,7 +71,7 @@ form.addEventListener('submit', async (event) => {
     window.location.href = "cadastro2.html";
 
     /* const response = await fetch(
-      'http://localhost:8082/api/auth/register',
+      'http://localhost:8080/api/auth/register',
       {
 
         method:'POST',
