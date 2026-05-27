@@ -388,7 +388,7 @@ async function exibirDashboard() {
     const token = localStorage.getItem("token");
     
     const response = await fetch(
-      `http://localhost:8082/api/usuarios/${usuarioId}/dashboard`,
+      `http://localhost:8080/api/usuarios/${usuarioId}/dashboard`,
       {
         headers: {
         Authorization: `Bearer ${token}`

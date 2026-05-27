@@ -1,170 +1,160 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>CicloCare | Recomendações</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="./css/recomendacoes.css">
-
-  <!-- Ícones -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
 </head>
 
 <body>
+  <div class="flower flower1">
+    <img src="./assets/images/icone.png" alt="">
+  </div>
+  <div class="flower flower2">
+    <img src="./assets/images/icone.png" alt="">
+  </div>
+  <div class="flower flower3">
+    <img src="./assets/images/icone.png" alt="">
+  </div>
+  <div class="flower flower4">
+    <img src="./assets/images/icone.png" alt="">
+  </div>
+  <div class="flower flower5">
+    <img src="./assets/images/icone.png" alt="">
+  </div>
+  <div class="flower flower6">
+    <img src="./assets/images/icone.png" alt="">
+  </div>
 
-  <!-- NAVBAR -->
   <header class="navbar">
-
-   <div class="logo">
-
-      <img src="./assets/images/icone.png" alt="Logo">
-
+    <div class="logo">
+      <img src="./assets/images/icone.png" alt="Logo CicloCare">
       <span>CicloCare</span>
-
     </div>
 
-  <!-- MENU -->
-<nav class="menu">
+    <nav class="menu">
+      <div class="dropdown">
+        <button class="dropdown-btn" type="button">
+          <i class="fa-solid fa-bars"></i>
+          <span>Menu</span>
+        </button>
 
-  <!-- DROPDOWN -->
-  <div class="dropdown">
+        <div class="dropdown-content">
+          <a href="registrodesintomas.html">Registros de Sintomas</a>
+          <a href="lembretes.html">Lembretes</a>
+          <a href="alarmes.html">Alarmes</a>
+        </div>
+      </div>
 
-    <button class="dropdown-btn">
-
-      <i class="fa-solid fa-bars"></i>
-      <span>Menu</span>
-
-    </button>
-
-    <div class="dropdown-content">
-
-      <a href="registrodesintomas.html">Registros de Sintomas</a>
-
-      <a href="lembretes.html">Lembretes</a>
-
-      <a href="alarmes.html">Alarmes</a>
-
-    </div>
-
-  </div>
-
-  <!-- LINKS-->
-
-  <a href="index.html">
-    <i class="fa-solid fa-house"></i>
-    <span>Início</span>
-  </a>
-
-  <a href="analises.html">
-    <i class="fa-solid fa-chart-column"></i>
-    <span>Análises</span>
-  </a>
-
-  <a href="recomendacoes.html">
-    <i class="fa-regular fa-star"></i>
-    <span>Recomendações</span>
-  </a>
-
-</nav>
-
-<!-- PERFIL -->
-<div class="perfil">
-
-  <a href="configuracoes.html">
-    <i class="fa-solid fa-gear"></i>
-  </a>  
-
-  <i class="fa-regular fa-bell bell-icon"></i>
-
-  <!-- USUÁRIO -->
-  <div class="usuario">
-
-    <!-- BOTÃO PERFIL -->
-    <div class="usuario-info">
-
-      <img src="https://i.pravatar.cc/100" alt="Usuária">
-
-      <span>Olá, Mari</span>
-
-    </div>
-
-    <!-- DROPDOWN PERFIL -->
-    <div class="profile-dropdown">
-
-      <a href="editarperfil.html">
-
-        <i class="fa-regular fa-user"></i>
-        Editar Perfil
-
+      <a href="index.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Início</span>
       </a>
 
-      <a href="ajuda.html">
-
-        <i class="fa-regular fa-circle-question"></i>
-        Ajuda
-
+      <a href="analises.html">
+        <i class="fa-solid fa-chart-column"></i>
+        <span>Análises</span>
       </a>
 
-      <a href="login.html">
+      <a class="active" href="recomendacoes.html">
+        <i class="fa-regular fa-star"></i>
+        <span>Recomendações</span>
+      </a>
+    </nav>
 
-        <i class="fa-solid fa-right-from-bracket"></i>
-        Encerrar Sessão
-
+    <div class="perfil">
+      <a href="configuracoes.html" aria-label="Configurações">
+        <i class="fa-solid fa-gear"></i>
       </a>
 
+      <i class="fa-regular fa-bell bell-icon" aria-label="Notificações"></i>
+
+      <div class="usuario">
+        <div class="usuario-info">
+          <img src="https://i.pravatar.cc/100" alt="Usuária">
+          <span id="nomeUsuario">Olá</span>
+        </div>
+
+        <div class="profile-dropdown">
+          <a href="editarperfil.html">
+            <i class="fa-regular fa-user"></i>
+            Editar Perfil
+          </a>
+          <a href="ajuda.html">
+            <i class="fa-regular fa-circle-question"></i>
+            Ajuda
+          </a>
+          <a href="login.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Encerrar Sessão
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <aside class="notification-sidebar">
+    <div class="sidebar-header">
+      <h2>Notificações</h2>
+      <i class="fa-solid fa-xmark close-sidebar"></i>
     </div>
 
-  </div>
+    <div class="notification-item">
+      <p>Hora de beber água</p>
+    </div>
+    <div class="notification-item">
+      <p>Seu ciclo começa amanhã</p>
+    </div>
+    <div class="notification-item">
+      <p>Tomar contraceptivo às 20h</p>
+    </div>
+  </aside>
 
-</div>
+  <main class="recommendations-page">
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow">Conteúdo personalizado</p>
+        <h1>Recomendações para o seu momento</h1>
+        <p class="subtitle">
+          Sugestões pensadas para acompanhar a fase atual do ciclo e os sintomas registrados recentemente.
+        </p>
+      </div>
 
-    </header>
+      <article class="cycle-summary" aria-live="polite">
+        <span class="summary-label">Fase atual</span>
+        <strong id="faseAtual">Carregando...</strong>
+        <small id="resumoCiclo">Buscando seus dados do ciclo</small>
+      </article>
+    </section>
 
-    <!-- SIDEBAR NOTIFICAÇÕES -->
+    <section class="filter-row" aria-label="Filtros de recomendações">
+      <button class="filter-chip active" type="button" data-filter="todas">Todas</button>
+      <button class="filter-chip" type="button" data-filter="alimentacao">Alimentação</button>
+      <button class="filter-chip" type="button" data-filter="bem-estar">Bem-estar</button>
+      <button class="filter-chip" type="button" data-filter="atividade">Atividade</button>
+      <button class="filter-chip" type="button" data-filter="cuidados">Cuidados</button>
+    </section>
 
-<div class="notification-sidebar">
+    <section class="recommendations-shell">
+      <div class="section-title">
+        <h2>Mais relevantes agora</h2>
+        <span id="statusRecomendacoes">Preparando recomendações</span>
+      </div>
 
-  <div class="sidebar-header">
+      <div id="recommendationsGrid" class="recommendations-grid" aria-live="polite"></div>
+    </section>
+  </main>
 
-    <h2>Notificações</h2>
-
-    <i class="fa-solid fa-xmark close-sidebar"></i>
-
-  </div>
-
-  <div class="notification-item">
-
-    <p>💧 Hora de beber água</p>
-
-  </div>
-
-  <div class="notification-item">
-
-    <p>🌸 Seu ciclo começa amanhã</p>
-
-  </div>
-
-  <div class="notification-item">
-
-    <p>💊 Tomar contraceptivo às 20h</p>
-
-  </div>
-
-</div>
-
-<!-- JS -->
   <script src="./js/recomendacoes.js"></script>
-
 </body>
 
 </html>
+
+
