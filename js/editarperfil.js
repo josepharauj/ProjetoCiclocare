@@ -233,7 +233,7 @@ async function carregarDadosUsuario() {
   try {
 
     const response = await fetch(
-      `http://localhost:8082/api/usuarios/${usuarioId}`
+      `http://localhost:8080/api/usuarios/${usuarioId}`
     );
 
     const data = await response.json();

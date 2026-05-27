@@ -22,6 +22,74 @@ document.addEventListener("DOMContentLoaded", () => {
       `Olá, ${usuario.nome}`;
 
     }
+// =========================
+// DROPDOWN MENU
+// =========================
+
+const dropdownBtn =
+document.querySelector(".dropdown-btn");
+
+const dropdownContent =
+document.querySelector(".dropdown-content");
+
+if (dropdownBtn && dropdownContent) {
+
+    dropdownBtn.addEventListener("click", () => {
+
+        dropdownContent.classList.toggle("active");
+
+    });
+}
+
+// =========================
+// SIDEBAR NOTIFICAÇÕES
+// =========================
+
+const bellIcon =
+document.querySelector(".bell-icon");
+
+const notificationSidebar =
+document.querySelector(".notification-sidebar");
+
+const closeSidebar =
+document.querySelector(".close-sidebar");
+
+if (bellIcon && notificationSidebar) {
+
+    bellIcon.addEventListener("click", () => {
+
+        notificationSidebar.classList.add("active");
+
+    });
+}
+
+if (closeSidebar && notificationSidebar) {
+
+    closeSidebar.addEventListener("click", () => {
+
+        notificationSidebar.classList.remove("active");
+
+    });
+}
+
+// =========================
+// DROPDOWN PERFIL
+// =========================
+
+const usuarioInfo =
+document.querySelector(".usuario-info");
+
+const profileDropdown =
+document.querySelector(".profile-dropdown");
+
+if (usuarioInfo && profileDropdown) {
+
+    usuarioInfo.addEventListener("click", () => {
+
+        profileDropdown.classList.toggle("active");
+
+    });
+}
 
     const textareaResumo = document.getElementById("resumoHoje");
 

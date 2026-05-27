@@ -31,6 +31,16 @@ async function cadastrar(e) {
     return;
   }
 
+  if (duracaoCiclo < 20) {
+    alert("A duração do ciclo deve ser de no mínimo 20 dias.");
+    return;
+  }
+
+  if (duracaoMenstruacao < 1) {
+    alert("A duração da menstruação deve ser de no mínimo 1 dia.");
+    return;
+  }
+
   const ultimaMenstruacaoDate = new Date(`${ultimaMenstruacao}T00:00:00`);
 
   const dataFimDate = new Date(ultimaMenstruacaoDate);
@@ -58,17 +68,15 @@ async function cadastrar(e) {
   nascimento: nascimento,
 
   dadosCiclo: {
+    dataInicio: ultimaMenstruacao,
     ultimaMenstruacao: ultimaMenstruacao,
     dataFim: dataFim,
     duracaoCiclo: duracaoCiclo,
     duracaoMenstruacao: duracaoMenstruacao,
-    ultimaMenstruacao: ultimaMenstruacao,
     proximaPrevisao: proximaPrevisao,
     intensidadeFluxo: "MEDIO"
   }
 };
-
-  console.log(cadastroCompleto);
 
   try {
     const response = await fetch(
@@ -82,20 +90,45 @@ async function cadastrar(e) {
       }
     );
 
-    const data = await response.json();
+    const data = await lerRespostaJson(response);
 
-    if (response.ok) {
+    if (response.ok && data.sucesso) {
       localStorage.removeItem("cadastroUsuario");
 
       alert("Cadastro realizado com sucesso!");
 
       window.location.href = "login.html";
     } else {
-      alert(data.mensagem || "Erro ao realizar cadastro.");
+      alert(formatarErroApi(data));
     }
 
   } catch (error) {
     console.error(error);
     alert("Erro ao conectar com servidor");
+  }
+}
+
+function formatarErroApi(data) {
+  if (data && data.dados && typeof data.dados === "object") {
+    return Object.values(data.dados).join("\n");
+  }
+
+  return (data && data.mensagem) || "Erro ao realizar cadastro.";
+}
+
+async function lerRespostaJson(response) {
+  const text = await response.text();
+
+  if (!text) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    return {
+      sucesso: false,
+      mensagem: text
+    };
   }
 }
