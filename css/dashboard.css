@@ -957,6 +957,22 @@ input:checked + .slider:before{
     inset 0 -26px 48px rgba(55, 41, 126, 0.22);
 }
 
+.aviso-precisao {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+
+  background-color: #ffe1ec;
+  border: 2px solid #ff4f8b;
+  color: #8a2049;
+
+  font-weight: 800;
+  font-size: 0.95rem;
+  line-height: 1.4;
+
+  box-shadow: 0 8px 18px rgba(255, 79, 139, 0.28);
+}
+
 @keyframes cyclePulse {
   0%, 100% {
     transform: scale(1);

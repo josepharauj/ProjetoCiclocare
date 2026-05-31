@@ -417,17 +417,35 @@ async function exibirDashboard() {
       fertilePeriodStart: data.janelaFertilInicio,
       fertilePeriodEnd: data.janelaFertilFim,
       ovulationPredict: data.previsaoOvulacao,
+      cycleAmount: data.quantidadeCiclos,
+      lessThan3Cycles: data.menosDe3Ciclos,
       message: data.mensagem 
     }
 
 
     atualizarDashboard(data);
     atualizarConteudoDiario(data);
+    atualizarAvisoPrecisao();
     await carregarCiclosCalendario(currentDate);
     renderCalendar(currentDate);
   
   } catch (error) {
     console.error("Erro ao carregar dashboard:", error);
+  }
+}
+
+function atualizarAvisoPrecisao() {
+  const avisoPrecisao = document.getElementById("avisoPrecisaoCiclo");
+
+  if (!avisoPrecisao || !cycleData) { return; }
+
+  if (cycleData.lessThan3Cycles) {
+    avisoPrecisao.hidden = false;
+    avisoPrecisao.textContent = 
+      "As previsões podem não ser tão precisas, pois há menos de 3 ciclos cadastrados."
+  } else {
+    avisoPrecisao.hidden = true;
+    avisoPrecisao.textContent = "";
   }
 }
 
