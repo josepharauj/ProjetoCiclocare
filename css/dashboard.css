@@ -22,7 +22,12 @@
 }
 
 body{
-  background:#efe2de;
+  background:linear-gradient(
+    90deg,
+    #f7ecec 0%,
+    #f7ecec 50%,
+    #efd3ef 100%
+  );  
   overflow-x:hidden;
   font-family:'Poppins', sans-serif;
 }
@@ -118,7 +123,7 @@ body{
 
   cursor:pointer;
 
-  color:var(--rosa);
+  color:#8F5353;
 
   font-size:13px;
 
@@ -126,8 +131,12 @@ body{
 }
 
 .dropdown-btn i{
+
   font-size:22px;
+
   margin-bottom:4px;
+
+  color:#8F5353;
 }
 
 .dropdown-btn:hover{
@@ -160,6 +169,12 @@ body{
   z-index:999;
 }
 
+.dropdown-content.active{
+
+  display:flex;
+  flex-direction:column;
+}
+
 .dropdown-content a{
 
   padding:12px 20px;
@@ -171,6 +186,8 @@ body{
   font-size:14px;
 
   transition:0.2s;
+
+  white-space:nowrap;
 }
 
 .dropdown-content a:hover{
@@ -472,12 +489,12 @@ input:checked + .slider:before{
 }
 
 .dashboard {
-  padding: 32px 40px;
+  padding: 32px 28px;
   align-items: start;
   display:grid;
   justify-content: center;
-  grid-template-columns: 420px 760px;
-  gap: 150px;
+  grid-template-columns: 460px 760px;
+  gap: 72px;
 }
 
 .status-card,
@@ -515,11 +532,15 @@ input:checked + .slider:before{
   width: 435px;
   height: 435px;
   border-radius: 50%;
-  background-image: url("../assets/icons/circulo-rosa.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding-bottom: 48px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.34), transparent 42%),
+    linear-gradient(145deg, #ff7f9f 0%, #e95180 100%);
+  border: 10px solid rgba(255, 255, 255, 0.86);
+  box-shadow:
+    0 24px 48px rgba(143, 83, 83, 0.24),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.34),
+    inset 0 -26px 48px rgba(105, 45, 68, 0.18);
+  padding: 56px 62px 44px;
   color: white;
   font-family: var(--inter-font);
   display: flex;
@@ -527,13 +548,43 @@ input:checked + .slider:before{
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: cyclePulse 4.8s ease-in-out infinite;
+  transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.cycle-circle::before {
+  content: "";
+  position: absolute;
+  inset: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  pointer-events: none;
+}
+
+.cycle-circle::after {
+  content: "";
+  position: absolute;
+  top: 42px;
+  left: 96px;
+  width: 160px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  filter: blur(2px);
+  transform: rotate(-18deg);
+  pointer-events: none;
 }
 
 .cycle-circle h3 {
   font-family: var(--inter-font);
-  transform: translateY(-28px);
-  font-size: 2rem;
-  transform: translateY(20px);
+  margin: 0 0 12px;
+  font-size: 1.95rem;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(80, 40, 55, 0.22);
+  position: relative;
+  z-index: 1;
 }
 
 .cycle-circle img {
@@ -544,12 +595,35 @@ input:checked + .slider:before{
 }
 
 .cycle-circle strong {
-  font-size: 3.4rem;
-  transform: translateY(30px);
+  display: block;
+  font-size: 3.35rem;
+  line-height: 1;
+  margin: 0;
+  letter-spacing: 0;
+  text-shadow: 0 3px 14px rgba(80, 40, 55, 0.24);
+  position: relative;
+  z-index: 1;
+}
+
+.cycle-circle span {
+  display: block;
+  width: min(270px, 100%);
+  margin-top: 18px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.35;
+  box-shadow: 0 8px 22px rgba(80, 40, 55, 0.14);
+  position: relative;
+  z-index: 1;
 }
 
 .cycle-circle button {
-  margin-top: 50px;
+  margin-top: 24px;
   border: none;
   border-radius: 999px;
   box-shadow: 0 8px 10px rgba(80, 40, 55, 0.35);
@@ -558,8 +632,9 @@ input:checked + .slider:before{
   padding: 8px 18px;
   color: var(--text-main);
   cursor: pointer;
-  transform: translateY(30px);
   font-size: 0.9rem;
+  position: relative;
+  z-index: 1;
 }
 
 .controle-mes-ano {
@@ -600,7 +675,7 @@ input:checked + .slider:before{
   padding: 20px;
   border-radius: 20px;
   max-width: 550px;
-  width: 110%; 
+  width: 100%; 
   border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -626,8 +701,8 @@ input:checked + .slider:before{
 .mini-cards {
   display: flex;
   justify-content: space-between;
-  gap: 30px;
-  width: 110%;
+  gap: 20px;
+  width: 100%;
 }
 
 .mini-cards article {
@@ -838,6 +913,76 @@ input:checked + .slider:before{
   color: var(--text-main);
 }
 
+.menstrual {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.34), transparent 42%),
+    linear-gradient(145deg, #ff8aa2 0%, #f04b78 52%, #cc2f61 100%);
+  border-color: #ffe0e8;
+  box-shadow:
+    0 24px 52px rgba(204, 47, 97, 0.28),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.38),
+    inset 0 -26px 48px rgba(118, 24, 57, 0.22);
+}
+
+.folicular {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.36), transparent 42%),
+    linear-gradient(145deg, #a8e9bd 0%, #59c988 54%, #2f9e70 100%);
+  border-color: #e0f7e9;
+  box-shadow:
+    0 24px 52px rgba(47, 158, 112, 0.24),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.38),
+    inset 0 -26px 48px rgba(35, 112, 82, 0.2);
+}
+
+.ovulacao {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.38), transparent 42%),
+    linear-gradient(145deg, #ffe08a 0%, #f5b84f 55%, #d7892d 100%);
+  border-color: #fff1c9;
+  box-shadow:
+    0 24px 52px rgba(215, 137, 45, 0.26),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.4),
+    inset 0 -26px 48px rgba(130, 76, 28, 0.18);
+}
+
+.lutea {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.34), transparent 42%),
+    linear-gradient(145deg, #b8a7ff 0%, #8b76df 54%, #6652bf 100%);
+  border-color: #e9e4ff;
+  box-shadow:
+    0 24px 52px rgba(102, 82, 191, 0.3),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.38),
+    inset 0 -26px 48px rgba(55, 41, 126, 0.22);
+}
+
+.aviso-precisao {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+
+  background-color: #ffe1ec;
+  border: 2px solid #ff4f8b;
+  color: #8a2049;
+
+  font-weight: 800;
+  font-size: 0.95rem;
+  line-height: 1.4;
+
+  box-shadow: 0 8px 18px rgba(255, 79, 139, 0.28);
+}
+
+@keyframes cyclePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.018);
+  }
+}
+
 @keyframes fadeUp{
 
   from{
@@ -979,6 +1124,19 @@ input:checked + .slider:before{
 .day:hover{
   transform:scale(1.05);
 }
+
+.day.menstruation-day {
+  background: #d94373;
+  color: whitesmoke;
+}
+
+.day.menstruation-day.selected {
+  background:  #C71585;
+  color: white;
+  box-shadow: 0 5px 15px rgba(217, 67, 115, 0.4);
+}
+
+
 
 .selected{
 
@@ -1459,13 +1617,61 @@ input:checked + .slider:before{
 }
 
 /* Estilo das Flores no Modal (reutilizando sua lógica) */
-.modal-flower {
-    position: absolute; width: 120px; opacity: 0.08;
-    animation: float 7s ease-in-out infinite; pointer-events: none;
+.flower{
+
+  position:absolute;
+
+  width:140px;
+
+  opacity:0.12;
+
+  animation:
+  float 7s ease-in-out infinite;
 }
-.flower1 { top: 10%; left: 5%; }
-.flower2 { bottom: 15%; right: 10%; }
-.flower3 { top: 40%; right: 20%; }
+
+.flower img{
+  width:100%;
+}
+
+.flower1{
+  top:20px;
+  left:-20px;
+}
+
+.flower2{
+  top:100px;
+  right:120px;
+  width:90px;
+  animation-delay:1s;
+}
+
+.flower3{
+  bottom:-30px;
+  right:-10px;
+  width:240px;
+  animation-delay:2s;
+}
+
+.flower4{
+  bottom:80px;
+  left:40px;
+  width:110px;
+  animation-delay:3s;
+}
+
+.flower5{
+  top:250px;
+  left:120px;
+  width:70px;
+  animation-delay:4s;
+}
+
+.flower6{
+  bottom:220px;
+  right:40px;
+  width:100px;
+  animation-delay:5s;
+}
 
 /* Cartão do Modal */
 .modal-card {
@@ -1559,4 +1765,60 @@ input:checked + .slider:before{
     font-size: 1.8rem;
     color: #ccc;
     cursor: pointer;
+}
+
+.flower{
+
+  position:absolute;
+
+  width:140px;
+
+  opacity:0.12;
+
+  animation:
+  float 7s ease-in-out infinite;
+}
+
+.flower img{
+  width:100%;
+}
+
+.flower1{
+  top:20px;
+  left:-20px;
+}
+
+.flower2{
+  top:100px;
+  right:120px;
+  width:90px;
+  animation-delay:1s;
+}
+
+.flower3{
+  bottom:-30px;
+  right:-10px;
+  width:240px;
+  animation-delay:2s;
+}
+
+.flower4{
+  bottom:80px;
+  left:40px;
+  width:110px;
+  animation-delay:3s;
+}
+
+.flower5{
+  top:250px;
+  left:120px;
+  width:70px;
+  animation-delay:4s;
+}
+
+.flower6{
+  bottom:220px;
+  right:40px;
+  width:100px;
+  animation-delay:5s;
 }

@@ -10,13 +10,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="./css/editarperfil.css">
 
   <!-- Ícones -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
@@ -25,7 +25,7 @@
   <!-- NAVBAR -->
   <header class="navbar">
 
-   <div class="logo">
+    <div class="logo">
 
       <img src="./assets/images/icone.png" alt="Logo">
 
@@ -33,136 +33,608 @@
 
     </div>
 
-  <!-- MENU -->
-<nav class="menu">
+    <!-- MENU -->
+    <nav class="menu">
 
-  <!-- DROPDOWN -->
-  <div class="dropdown">
+      <!-- DROPDOWN -->
+      <div class="dropdown">
 
-    <button class="dropdown-btn">
+        <button class="dropdown-btn">
 
-      <i class="fa-solid fa-bars"></i>
-      <span>Menu</span>
+          <i class="fa-solid fa-bars"></i>
+          <span>Menu</span>
 
-    </button>
+        </button>
 
-    <div class="dropdown-content">
+        <div class="dropdown-content">
 
-      <a href="registrodesintomas.html">Registros de Sintomas</a>
+          <a href="registrodesintomas.html">Registros de Sintomas</a>
 
-      <a href="lembretes.html">Lembretes</a>
+          <a href="lembretes.html">Lembretes</a>
 
-      <a href="alarmes.html">Alarmes</a>
+          <a href="alarmes.html">Alarmes</a>
+
+        </div>
+
+      </div>
+
+      <!-- LINKS-->
+
+      <a href="index.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Início</span>
+      </a>
+
+      <a href="analises.html">
+        <i class="fa-solid fa-chart-column"></i>
+        <span>Análises</span>
+      </a>
+
+      <a href="recomendacoes.html">
+        <i class="fa-regular fa-star"></i>
+        <span>Recomendações</span>
+      </a>
+
+    </nav>
+
+    <!-- PERFIL -->
+    <div class="perfil">
+
+      <a href="configuracoes.html">
+        <i class="fa-solid fa-gear"></i>
+      </a>
+
+      <i class="fa-regular fa-bell bell-icon"></i>
+
+      <!-- USUÁRIO -->
+      <div class="usuario">
+
+        <!-- BOTÃO PERFIL -->
+        <div class="usuario-info">
+
+          <img src="https://i.pravatar.cc/100" alt="Usuária">
+
+          <span>Olá, Mari</span>
+
+        </div>
+
+        <!-- DROPDOWN PERFIL -->
+        <div class="profile-dropdown">
+
+          <a href="editarperfil.html">
+
+            <i class="fa-regular fa-user"></i>
+            Editar Perfil
+
+          </a>
+
+          <a href="ajuda.html">
+
+            <i class="fa-regular fa-circle-question"></i>
+            Ajuda
+
+          </a>
+
+          <a href="login.html">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Encerrar Sessão
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- SIDEBAR NOTIFICAÇÕES -->
+
+  <div class="notification-sidebar">
+
+    <div class="sidebar-header">
+
+      <h2>Notificações</h2>
+
+      <i class="fa-solid fa-xmark close-sidebar"></i>
+
+    </div>
+
+    <div class="notification-item">
+
+      <p>💧 Hora de beber água</p>
+
+    </div>
+
+    <div class="notification-item">
+
+      <p>🌸 Seu ciclo começa amanhã</p>
+
+    </div>
+
+    <div class="notification-item">
+
+      <p>💊 Tomar contraceptivo às 20h</p>
 
     </div>
 
   </div>
 
-  <!-- LINKS-->
+  <!-- Conteúo do corpo do código -->
 
-  <a href="index.html">
-    <i class="fa-solid fa-house"></i>
-    <span>Início</span>
-  </a>
+  <div class="container">
 
-  <a href="analises.html">
-    <i class="fa-solid fa-chart-column"></i>
-    <span>Análises</span>
-  </a>
+    <!-- TÍTULO -->
 
-  <a href="recomendacoes.html">
-    <i class="fa-regular fa-star"></i>
-    <span>Recomendações</span>
-  </a>
+    <div class="titulo">
 
-</nav>
+      <h1>Editar Perfil</h1>
 
-<!-- PERFIL -->
-<div class="perfil">
+      <p>
 
-  <a href="configuracoes.html">
-    <i class="fa-solid fa-gear"></i>
-  </a>  
+        Gerencie suas informações pessoais e personalize
+        sua experiência no CicloCare.
 
-  <i class="fa-regular fa-bell bell-icon"></i>
-
-  <!-- USUÁRIO -->
-  <div class="usuario">
-
-    <!-- BOTÃO PERFIL -->
-    <div class="usuario-info">
-
-      <img src="https://i.pravatar.cc/100" alt="Usuária">
-
-      <span>Olá, Mari</span>
+      </p>
 
     </div>
 
-    <!-- DROPDOWN PERFIL -->
-    <div class="profile-dropdown">
+    <!-- FOTO PERFIL -->
 
-      <a href="editarperfil.html">
+    <section class="card">
 
-        <i class="fa-regular fa-user"></i>
-        Editar Perfil
+      <h2>📸 Foto de Perfil</h2>
 
-      </a>
+      <div class="foto-area">
 
-      <a href="ajuda.html">
+        <!-- FOTO -->
 
-        <i class="fa-regular fa-circle-question"></i>
-        Ajuda
+        <img src="https://i.pravatar.cc/200" alt="Foto Perfil" id="fotoPerfil">
 
-      </a>
+        <!-- BOTÕES -->
 
-      <a href="login.html">
+        <div class="foto-botoes">
 
-        <i class="fa-solid fa-right-from-bracket"></i>
-        Encerrar Sessão
+          <!-- LABEL vira botão -->
 
-      </a>
+          <label for="inputFoto" class="btn-primary">
+
+            Trocar foto
+
+          </label>
+
+          <!-- INPUT HIDDEN -->
+
+          <input type="file" id="inputFoto" accept="image/*" hidden>
+
+          <!-- REMOVER -->
+
+          <button class="btn-text" id="removerFoto">
+
+            Remover foto
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+    <!-- DADOS PESSOAIS -->
+
+    <section class="card">
+
+      <h2>📝 Dados Pessoais</h2>
+
+      <p class="descricao">
+
+        Essas informações ajudam a personalizar sua experiência
+        dentro da plataforma.
+
+      </p>
+
+      <!-- GRID -->
+
+      <div class="grid">
+
+        <!-- NOME -->
+
+        <div class="input-group">
+
+          <div class="input-header">
+
+            <label>Nome</label>
+
+            <i class="fa-solid fa-pen edit-icon"></i>
+
+          </div>
+
+          <input type="text" id="nome" value="" disabled>
+
+        </div>
+
+        <!-- EMAIL -->
+
+        <div class="input-group">
+
+          <div class="input-header">
+
+            <label>Email</label>
+
+            <i class="fa-solid fa-pen edit-icon"></i>
+
+          </div>
+
+          <input type="email" id = "email" value="" disabled>
+
+        </div>
+
+        <!-- NASCIMENTO -->
+
+        <div class="input-group">
+
+          <label>Data de nascimento</label>
+
+          <input type="date" id="dataNascimento">
+
+        </div>
+
+        <!-- IDADE -->
+
+        <div class="input-group">
+
+          <label>Idade atual</label>
+
+          <input type="text" id="idade" readonly>
+
+        </div>
+
+      </div>
+
+      <!--BOTÃO SALVAR-->
+
+    <div class="salvar-dados-area">
+
+        <button class="btn-primary" id="salvarDadosPessoais">
+          Salvar dados pessoais
+        </button>
+
+      </div>
+      <p id="mensagemDados"></p>
+
+    </section>
+       
+
+    <!-- INFORMAÇÕES CICLO -->
+
+    <section class="card">
+
+      <h2>🌸 Informações do Ciclo</h2>
+
+      <p class="descricao">
+
+        Essas informações são calculadas automaticamente
+        com base nos seus registros recentes.
+
+      </p>
+
+      <!-- BOX -->
+
+      <div class="info-box">
+
+        <h3>Duração média do ciclo</h3>
+
+        <p>
+
+          Seu ciclo médio atual é de
+          <strong>28 dias</strong>.
+
+        </p>
+
+      </div>
+
+      <!-- BOX -->
+
+      <div class="info-box">
+
+        <h3>Duração da menstruação</h3>
+
+        <p>
+
+          Sua média registrada é de
+          <strong>5 dias</strong>.
+
+        </p>
+
+      </div>
+
+      <!-- BOX -->
+
+      <div class="info-box">
+
+        <h3>Fluxo menstrual recente</h3>
+
+        <p>
+
+          Seu último fluxo registrado foi
+          <strong>Moderado → Intenso</strong>.
+
+        </p>
+
+      </div>
+
+      <!-- SINTOMAS -->
+
+      <div class="info-box">
+
+        <h3>Sintomas frequentes</h3>
+
+        <div class="chips">
+
+          <div class="chip active">
+
+            😣 Cólicas
+
+          </div>
+
+          <div class="chip active">
+
+            😴 Cansaço
+
+          </div>
+
+          <div class="chip active">
+
+            😡 Irritação
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BOTÃO -->
+
+      <button class="btn-primary">
+
+        Atualizar registros do ciclo
+
+      </button>
+
+    </section>
+
+    <!-- MÉTODO CONTRACEPTIVO -->
+
+    <section class="card">
+
+      <h2>💊 Método Contraceptivo</h2>
+
+      <p class="descricao">
+
+        Configure informações relacionadas ao seu método
+        contraceptivo e receba lembretes inteligentes.
+
+      </p>
+
+      <!-- CHIP -->
+
+      <div class="chips">
+
+        <div class="chip active">
+
+          💊 Pílula
+
+        </div>
+
+      </div>
+
+      <!-- ALERTA -->
+
+      <div class="alerta-box">
+
+        <h3>💡 Recomendação</h3>
+
+        <p>
+
+          Ative lembretes para tomar sua medicação
+          no horário correto.
+
+        </p>
+
+        <button class="btn-primary">
+
+          Criar lembrete
+
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- FERTILIDADE -->
+
+    <section class="card">
+
+      <h2>🤰 Informações de Fertilidade</h2>
+
+      <p class="descricao">
+
+        Essas preferências ajudam o sistema a oferecer
+        recomendações mais relevantes.
+
+      </p>
+
+      <div class="chips">
+
+        <div class="chip">
+
+          🤰 Tentante
+
+        </div>
+
+        <div class="chip">
+
+          👶 Gestante
+
+        </div>
+
+        <div class="chip active">
+
+          🛡️ Evitar gravidez
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- SAÚDE -->
+
+    <section class="card">
+
+      <h2>🩺 Informações de Saúde</h2>
+
+      <p class="descricao">
+
+        Compartilhe informações opcionais que podem
+        ajudar na precisão das análises.
+
+      </p>
+
+      <div class="chips">
+
+        <div class="chip">
+
+          SOP
+
+        </div>
+
+        <div class="chip active">
+
+          Irregularidade menstrual
+
+        </div>
+
+        <div class="chip">
+
+          Endometriose
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- OBJETIVOS -->
+
+    <section class="card">
+
+      <h2>🎯 Objetivos da Usuária</h2>
+
+      <p class="descricao">
+
+        Personalize o comportamento do CicloCare
+        de acordo com seus objetivos atuais.
+
+      </p>
+
+      <div class="objetivos">
+
+        <!-- CARD -->
+
+        <div class="objetivo-card active">
+
+          <i class="fa-solid fa-calendar-days"></i>
+
+          <h3>Acompanhar ciclo</h3>
+
+          <p>
+
+            Monitore fases hormonais e previsões.
+
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="objetivo-card">
+
+          <i class="fa-solid fa-heart"></i>
+
+          <h3>Engravidar</h3>
+
+          <p>
+
+            Receba insights sobre fertilidade.
+
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="objetivo-card">
+
+          <i class="fa-solid fa-shield-heart"></i>
+
+          <h3>Evitar gravidez</h3>
+
+          <p>
+
+            Receba alertas e previsões do ciclo.
+
+          </p>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="objetivo-card">
+
+          <i class="fa-solid fa-chart-line"></i>
+
+          <h3>Acompanhar sintomas</h3>
+
+          <p>
+
+            Visualize padrões emocionais e físicos.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- BOTÃO -->
+
+    <div class="salvar-area">
+
+      <button class="salvar-btn" id="salvarBtn">
+
+        Salvar alterações
+
+      </button>
 
     </div>
 
   </div>
 
-</div>
+  <!-- TOAST -->
 
-    </header>
+  <div class="toast" id="toast">
 
-    <!-- SIDEBAR NOTIFICAÇÕES -->
-
-<div class="notification-sidebar">
-
-  <div class="sidebar-header">
-
-    <h2>Notificações</h2>
-
-    <i class="fa-solid fa-xmark close-sidebar"></i>
+    ✔ Perfil atualizado com sucesso
 
   </div>
 
-  <div class="notification-item">
-
-    <p>💧 Hora de beber água</p>
-
-  </div>
-
-  <div class="notification-item">
-
-    <p>🌸 Seu ciclo começa amanhã</p>
-
-  </div>
-
-  <div class="notification-item">
-
-    <p>💊 Tomar contraceptivo às 20h</p>
-
-  </div>
-
-</div>
-
-<!-- JS -->
+  <!-- JS -->
   <script src="./js/editarperfil.js"></script>
 
 </body>

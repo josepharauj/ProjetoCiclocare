@@ -1,3 +1,18 @@
+// USUÁRIO LOGADO
+const usuario =
+JSON.parse(
+  localStorage.getItem('usuario')
+);
+
+const nomeUsuario =
+document.getElementById('nomeUsuario');
+
+if(usuario && nomeUsuario){
+
+  nomeUsuario.textContent =
+  `Olá, ${usuario.nome}`;
+
+}
 // =========================
 // DROPDOWN MENU
 // =========================
@@ -9,21 +24,11 @@ const dropdownContent =
 document.querySelector(".dropdown-content");
 
 if (dropdownBtn && dropdownContent) {
-
   dropdownBtn.addEventListener("click", () => {
-
-    if (dropdownContent.style.display === "flex") {
-
-      dropdownContent.style.display = "none";
-
-    } else {
-
-      dropdownContent.style.display = "flex";
-
-    }
-
+    dropdownContent.classList.toggle("active");
   });
 }
+
 
 // =========================
 // SIDEBAR NOTIFICAÇÕES
@@ -102,7 +107,6 @@ function renderCalendar(date) {
   calendarGrid.innerHTML = "";
 
   const year = date.getFullYear();
-
   const month = date.getMonth();
 
   const firstDay =
@@ -110,6 +114,8 @@ function renderCalendar(date) {
 
   const lastDate =
   new Date(year, month + 1, 0).getDate();
+
+  const prevLastDate = new Date(year, month, 0).getDate();
 
   const monthNames = [
 
@@ -131,47 +137,64 @@ function renderCalendar(date) {
   monthYear.textContent =
   `${monthNames[month]} ${year}`;
 
-  for (let i = 0; i < firstDay; i++) {
+  for (let i = firstDay; i > 0; i--) {
+    const dayElement = document.createElement("div");
+    const previousMonthDay = prevLastDate - i + 1;
+    const dayDate = new Date(year, month - 1, previousMonthDay);
 
-    const emptyDay =
-    document.createElement("div");
+    dayElement.classList.add("day", "other-month");
+    dayElement.textContent = String(prevLastDate - i + 1).padStart(2, "0");
 
-    calendarGrid.appendChild(emptyDay);
+    calendarGrid.appendChild(dayElement);
   }
 
   for (let day = 1; day <= lastDate; day++) {
+    const dayElement = document.createElement("div");
+    const dayDate = new Date(year, month, day);
 
-    const dayElement =
-    document.createElement("div");
+    dayElement.classList.add("day", "current-month");
+    dayElement.textContent = String(day).padStart(2, "0");
 
-    dayElement.classList.add("day");
-
-    dayElement.textContent = day;
+    if (isMenstruationDay(dayDate)) {
+      dayElement.classList.add("menstruation-day");
+    }
 
     dayElement.addEventListener("click", () => {
-
       document
-        .querySelectorAll(".day")
-        .forEach(d => d.classList.remove("selected"));
+        .querySelectorAll(".calendar-grid .day")
+        .forEach((item) => item.classList.remove("selected"));
 
       dayElement.classList.add("selected");
-
     });
 
     calendarGrid.appendChild(dayElement);
   }
+
+  const totalCells = firstDay + lastDate;
+  const nextDays = 42 - totalCells;
+
+  for (let day = 1; day <= nextDays; day++) {
+    const dayElement = document.createElement("div");
+
+    dayElement.classList.add("day", "other-month");
+    dayElement.textContent = String(day).padStart(2, "0");
+
+    calendarGrid.appendChild(dayElement);
+  }
+  
 }
 
 // MÊS ANTERIOR
 
 if (prevMonth) {
 
-  prevMonth.addEventListener("click", () => {
+  prevMonth.addEventListener("click", async () => {
 
     currentDate.setMonth(
       currentDate.getMonth() - 1
     );
-
+    
+    await carregarCiclosCalendario(currentDate);
     renderCalendar(currentDate);
 
   });
@@ -181,17 +204,275 @@ if (prevMonth) {
 
 if (nextMonth) {
 
-  nextMonth.addEventListener("click", () => {
+  nextMonth.addEventListener("click", async () => {
 
     currentDate.setMonth(
       currentDate.getMonth() + 1
     );
 
+    await carregarCiclosCalendario(currentDate);
     renderCalendar(currentDate);
 
   });
 }
 
-// INICIAR CALENDÁRIO
+//================================================
+//              CICLO MENSTRUAL
+//=================================================
 
-renderCalendar(currentDate);
+let cycleData = null;
+let ciclosCalendario = [];
+
+function parseLocalDate(dateString) {
+  const [year, month, day] = dateString.split("-").map(Number);
+  return new Date(year, month - 1, day);
+}
+
+function daysBetween(startDate, targetDate) {
+  const start = Date.UTC(
+    startDate.getFullYear(),
+    startDate.getMonth(),
+    startDate.getDate()
+  );
+
+  const target = Date.UTC(
+    targetDate.getFullYear(),
+    targetDate.getMonth(),
+    targetDate.getDate()
+  );
+
+  return Math.floor((target - start) / 86400000);
+}
+
+async function carregarCiclosCalendario(date) {
+  const token = localStorage.getItem("token");
+
+  const year = date.getFullYear();
+  const month = date.getMonth();
+
+  const inicio = new Date(year, month, 1);
+  const fim = new Date(year, month + 1, 0);
+
+  const inicioFormatado = inicio.toISOString().split("T")[0];
+  const fimFormatado = fim.toISOString().split("T")[0];
+
+  const response = await fetch(
+    `http://localhost:8080/api/ciclos/calendario?inicio=${inicioFormatado}&fim=${fimFormatado}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+
+  const data = await response.json();
+
+  ciclosCalendario = data.dados || [];
+}
+
+function isMenstruationDay(date) {
+  const existeCicloReal =
+    ciclosCalendario.some(ciclo => {
+      const inicio =
+        parseLocalDate(ciclo.dataInicio);
+
+      const fim =
+        parseLocalDate(ciclo.dataFim);
+
+      return date >= inicio && date <= fim;
+    });
+
+  if (existeCicloReal) {
+    return true;
+  }
+
+  if (!cycleData) { return false; }
+
+  const lastPeriodStart = parseLocalDate(cycleData.lastPeriodStart);
+  const daysFromStart = daysBetween(lastPeriodStart, date);
+
+  if (daysFromStart < 0) {
+    return false;
+  }
+
+  const cycleDay = daysFromStart % cycleData.cycleLength;
+
+  return cycleDay < cycleData.periodLength;
+}  
+
+// ============================================================
+//                        DASHBOARD
+// ============================================================
+
+function alterarCorCirculo(fase) {
+  const cycleCircle = document.getElementById("cycle-circle");
+
+  cycleCircle.classList.remove(
+    "menstrual",
+    "folicular",
+    "ovulacao",
+    "lutea"
+  );
+
+  switch (fase) {
+    case "MENSTRUAL":
+      cycleCircle.classList.add("menstrual");
+      break;
+    
+    case "FOLICULAR":
+      cycleCircle.classList.add("folicular");
+      break;
+
+    case "OVULACAO":
+      cycleCircle.classList.add("ovulacao");
+      break;
+
+    case "LUTEA":
+      cycleCircle.classList.add("lutea");   
+      break;
+  }
+
+}
+
+function atualizarDashboard(data) {
+    const fase = document.getElementById("fase-ciclo");
+
+    const dia = document.getElementById("dia-ciclo");
+
+    const mensagem = document.getElementById("mensagem-ciclo");
+
+    fase.innerText = formatarFase(data.faseCiclo);
+
+    dia.innerText = `Dia ${data.diaCiclo}`;
+
+    mensagem.innerText = data.mensagem;
+
+    alterarCorCirculo(data.faseCiclo);
+}
+
+function formatarFase(fase) {
+
+  switch(fase) {
+
+    case "MENSTRUAL":
+        return "Menstruação";
+
+    case "FOLICULAR":
+        return "Fase Folicular";
+
+    case "OVULACAO":
+        return "Ovulação";
+
+    case "LUTEA":
+        return "Fase Lútea";
+
+    default:
+        return "Ciclo";
+  }
+}
+
+function atualizarConteudoDiario(data) {
+  const faseTitulo = document.getElementById("faseAtualCiclo");
+  const mensagemFase = document.getElementById("mensagemFaseCiclo");
+
+  if (!faseTitulo || !mensagemFase) {
+    return;
+  }
+
+  faseTitulo.textContent =
+    `Fase atual do ciclo: ${formatarFase(data.faseCiclo)}`;
+
+  mensagemFase.textContent =
+    data.mensagemDetalhadaFase ||
+    data.mensagem ||
+    "Acompanhe seus sintomas e recomendações para entender melhor este momento do ciclo.";
+}
+
+async function exibirDashboard() {  
+  try {
+    const usuarioId = localStorage.getItem("usuarioId");
+    const token = localStorage.getItem("token");
+    
+    const response = await fetch(
+      `http://localhost:8080/api/usuarios/${usuarioId}/dashboard`,
+      {
+        headers: {
+        Authorization: `Bearer ${token}`
+        }
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Erro ao carregar dashboard: ${response.status}`)
+    }
+    const data = await response.json();
+
+    console.log(data);
+
+    cycleData = {
+      lastPeriodStart: data.ultimaMenstruacao,
+      cycleLength: data.duracaoCiclo,
+      periodLength: data.duracaoMenstruacao,
+      nextPeriodStart: data.proximaPrevisao,
+      fertilePeriodStart: data.janelaFertilInicio,
+      fertilePeriodEnd: data.janelaFertilFim,
+      ovulationPredict: data.previsaoOvulacao,
+      cycleAmount: data.quantidadeCiclos,
+      lessThan3Cycles: data.menosDe3Ciclos,
+      message: data.mensagem 
+    }
+
+
+    atualizarDashboard(data);
+    atualizarConteudoDiario(data);
+    atualizarAvisoPrecisao();
+    await carregarCiclosCalendario(currentDate);
+    renderCalendar(currentDate);
+  
+  } catch (error) {
+    console.error("Erro ao carregar dashboard:", error);
+  }
+}
+
+function atualizarAvisoPrecisao() {
+  const avisoPrecisao = document.getElementById("avisoPrecisaoCiclo");
+
+  if (!avisoPrecisao || !cycleData) { return; }
+
+  if (cycleData.lessThan3Cycles) {
+    avisoPrecisao.hidden = false;
+    avisoPrecisao.textContent = 
+      "As previsões podem não ser tão precisas, pois há menos de 3 ciclos cadastrados."
+  } else {
+    avisoPrecisao.hidden = true;
+    avisoPrecisao.textContent = "";
+  }
+}
+
+window.onload = async () => {
+  await exibirDashboard();
+}
+
+// ============================================================
+//                 MEU CONTEÚDO DIÁRIO
+// ============================================================
+
+//Aqui ele faz exatamente a mesma que o círculo menstrual faz: puxa informações do ciclo direto do banco 
+//e mostra uma mensagem personalizada de acordo com o dia do ciclo.
+
+
+
+// LOGOUT
+const logoutBtn =
+document.getElementById('logoutBtn');
+
+if(logoutBtn){
+
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+    window.location.href =
+    'login.html';
+  });
+
+}

@@ -5,17 +5,15 @@
   font-family:'Poppins', sans-serif;
 }
 
-:root{
-  --rosa:#b26b6b;
-  --rosaClaro:#f7dede;
-  --rosaMedio:#f3c9d7;
-  --lilas:#eccff3;
-  --branco:#fff;
+:root {
+  --rosaEscuro: #8F5353;
+  --gradienteRosa: linear-gradient(135deg, #ff7ea5, #f25d8a);
+  --rosaSuave: rgba(244, 107, 147, 0.2);
 }
 
 body{
   min-height:100vh;
-  overflow:hidden;
+  overflow:auto;
 
   background:linear-gradient(
     90deg,
@@ -512,4 +510,212 @@ body{
 .profile-dropdown a i{
 
   font-size:16px;
+}
+
+/* Layout Principal */
+.main-dashboard {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Título Centralizado */
+.dashboard-header h1 {
+  text-align: center;
+  color: var(--rosaEscuro);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+/* Container de Colunas Flexbox */
+.columns-container {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* Configuração de cada coluna */
+.column {
+  flex: 1;
+}
+
+/* Estilização dos Cards (Efeito Glassmorphism) */
+.card-box {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 30px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card-box h2 {
+  color: var(--rosaEscuro);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* Grupos de Formulário */
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+/* Inputs, Selects e Date */
+.input-group input, 
+.input-group select {
+  width: 100%;
+  height: 52px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0 15px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+/* Efeito de Foco nos Inputs */
+.input-group input:focus, 
+.input-group select:focus {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 4px var(--rosaSuave);
+}
+
+/* Botão Agendar */
+.btn-save {
+  width: 100%;
+  height: 58px;
+  border: none;
+  border-radius: 16px;
+  background: var(--gradienteRosa);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s;
+  box-shadow: 0 10px 20px rgba(242, 93, 138, 0.3);
+}
+
+.btn-save:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 24px rgba(242, 93, 138, 0.45);
+}
+
+/* Lista de Lembretes (Coluna Direita) */
+#reminders-list .empty-msg {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Responsividade para Telas Menores */
+@media (max-width: 900px) {
+  .columns-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .column {
+    width: 100%;
+  }
+
+  .dashboard-header h1 {
+    font-size: 2rem;
+  }
+}
+
+/* ==========================================================================
+   AÇÕES DOS LEMBRETES (Ativo/Inativo, Editar, Excluir) 
+   ========================================================================== */
+
+.reminder-item {
+  background: rgba(255, 255, 255, 0.65);
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  border-left: 5px solid #f25d8a;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Estado quando o lembrete for desativado/concluído */
+.reminder-item.inactive {
+  opacity: 0.55;
+  border-left-color: #a0a0a0;
+}
+
+.reminder-item.inactive .reminder-title {
+  text-decoration: line-through;
+  color: #777 !important;
+}
+
+/* Área dos botões de ação */
+.reminder-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.reminder-actions button {
+  flex: 1;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Botão Status (Ativo/Inativo) 
+.btn-status-toggle {
+  background: #e3f2fd;
+  color: #1e88e5;
+}
+.reminder-item.inactive .btn-status-toggle {
+  background: #f5f5f5;
+  color: #616161;
+}*/
+
+/* Botão Editar */
+.btn-edit-reminder {
+  background: #ffe5ef;
+  color: #c45178;
+}
+
+/* Botão Excluir */
+.btn-delete-reminder {
+  background: #ffe0e0;
+  color: #d14d4d;
+}
+
+/* Efeitos Hover */
+.reminder-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }

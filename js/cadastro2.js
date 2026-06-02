@@ -1,51 +1,134 @@
-const form =
-document.getElementById('cycleForm');
+const form = 
+document.getElementById('formCiclo');
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', cadastrar);
 
-  event.preventDefault();
+async function cadastrar(e) {
+  e.preventDefault();
 
-  const nascimento =
-  document.getElementById('nascimento')
-  .value;
+  const usuarioSalvo = JSON.parse(
+    localStorage.getItem("cadastroUsuario")
+  );
 
-  const duracaoCiclo =
-  document.getElementById('duracaoCiclo')
-  .value;
-
-  const duracaoMenstruacao =
-  document.getElementById('duracaoMenstruacao')
-  .value;
-
-  const ultimaMenstruacao =
-  document.getElementById('ultimaMenstruacao')
-  .value;
-
-  if(
-    nascimento === '' ||
-    duracaoCiclo === '' ||
-    duracaoMenstruacao === '' ||
-    ultimaMenstruacao === ''
-  ){
-
-    alert(
-      'Preencha todos os campos'
-    );
-
+  if (!usuarioSalvo) {
+    alert("Preencha os dados básicos primeiro.");
+    window.location.href = "cadastro1.html";
     return;
   }
 
-  const dadosCiclo = {
+  const nascimento = document.getElementById("nascimento").value;
+  const ultimaMenstruacao = document.getElementById("ultimaMenstruacao").value;
+  const duracaoCiclo = Number(document.getElementById("duracaoCiclo").value);
+  const duracaoMenstruacao = Number(document.getElementById("duracaoMenstruacao").value);
 
-    nascimento,
-    duracaoCiclo,
-    duracaoMenstruacao,
-    ultimaMenstruacao
-  };
+  if (
+    !nascimento ||
+    !duracaoCiclo ||
+    !duracaoMenstruacao ||
+    !ultimaMenstruacao
+  ) {
+    alert("Preencha todos os campos.");
+    return;
+  }
 
-  console.log(dadosCiclo);
+  if (duracaoCiclo < 20) {
+    alert("A duração do ciclo deve ser de no mínimo 20 dias.");
+    return;
+  }
 
-  window.location.href =
-  'index.html';
+  if (duracaoMenstruacao < 1) {
+    alert("A duração da menstruação deve ser de no mínimo 1 dia.");
+    return;
+  }
 
-});
+  const ultimaMenstruacaoDate = new Date(`${ultimaMenstruacao}T00:00:00`);
+
+  const dataFimDate = new Date(ultimaMenstruacaoDate);
+  dataFimDate.setDate(
+    dataFimDate.getDate() + duracaoMenstruacao - 1
+  );
+
+  const proximaPrevisaoDate = new Date(ultimaMenstruacaoDate);
+  proximaPrevisaoDate.setDate(
+    proximaPrevisaoDate.getDate() + duracaoCiclo
+  );
+
+  const dataFim = dataFimDate
+    .toISOString()
+    .split("T")[0];
+
+  const proximaPrevisao = proximaPrevisaoDate
+    .toISOString()
+    .split("T")[0];
+
+  const cadastroCompleto = {
+  nome: usuarioSalvo.nome,
+  email: usuarioSalvo.email,
+  senha: usuarioSalvo.senha,
+  nascimento: nascimento,
+
+  dadosCiclo: {
+    dataInicio: ultimaMenstruacao,
+    ultimaMenstruacao: ultimaMenstruacao,
+    dataFim: dataFim,
+    duracaoCiclo: duracaoCiclo,
+    duracaoMenstruacao: duracaoMenstruacao,
+    proximaPrevisao: proximaPrevisao,
+    intensidadeFluxo: "MEDIO"
+  }
+};
+
+  try {
+    const response = await fetch(
+      "http://localhost:8080/api/auth/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(cadastroCompleto)
+      }
+    );
+
+    const data = await lerRespostaJson(response);
+
+    if (response.ok && data.sucesso) {
+      localStorage.removeItem("cadastroUsuario");
+
+      alert("Cadastro realizado com sucesso!");
+
+      window.location.href = "login.html";
+    } else {
+      alert(formatarErroApi(data));
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao conectar com servidor");
+  }
+}
+
+function formatarErroApi(data) {
+  if (data && data.dados && typeof data.dados === "object") {
+    return Object.values(data.dados).join("\n");
+  }
+
+  return (data && data.mensagem) || "Erro ao realizar cadastro.";
+}
+
+async function lerRespostaJson(response) {
+  const text = await response.text();
+
+  if (!text) {
+    return {};
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    return {
+      sucesso: false,
+      mensagem: text
+    };
+  }
+}

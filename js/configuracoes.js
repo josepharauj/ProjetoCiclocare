@@ -2,6 +2,34 @@ const dropdownBtn = document.querySelector(".dropdown-btn");
 
 const dropdownContent = document.querySelector(".dropdown-content");
 
+const tituloNotificacoes = document.querySelector(".notificacoes-titulo");
+const listaNotificacoes = document.querySelector(".lista-notificacoes");
+const tituloPrivacidade = document.querySelector(".privacidade-titulo");
+const listaPrivacidade = document.querySelector(".lista-privacidade");
+const tituloSeguranca = document.querySelector(".seguranca-titulo");
+const listaSeguranca = document.querySelector(".lista-seguranca");
+const onOffButtons = document.querySelectorAll(".on-off-button");
+
+onOffButtons.forEach((button) => {
+  button.addEventListener("change", () => {
+    const subItem = button.closest(".configuracoes-subitem");
+
+    subItem.classList.toggle("on", button.checked);
+  })
+})
+
+tituloNotificacoes.addEventListener("click", () => {
+  listaNotificacoes.classList.toggle("aberta");
+});
+
+tituloPrivacidade.addEventListener("click", () => {
+  listaPrivacidade.classList.toggle("aberta");
+});
+
+tituloSeguranca.addEventListener("click", () => {
+  listaSeguranca.classList.toggle("aberta");
+})
+
 dropdownBtn.addEventListener("click", () => {
 
   if(dropdownContent.style.display === "flex"){

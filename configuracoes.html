@@ -11,7 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="./css/configuracoes.css">
 
   <!-- Ícones -->
@@ -162,7 +163,155 @@
 
 </div>
 
-<!-- JS -->
+<!-- Background flores -->
+  <div class="flower flower1">
+    <img src="./assets/images/icone.png">
+  </div>
+
+  <div class="flower flower2">
+    <img src="./assets/images/icone.png">
+  </div>
+
+  <div class="flower flower3">
+    <img src="./assets/images/icone.png">
+  </div>
+
+  <div class="flower flower4">
+    <img src="./assets/images/icone.png">
+  </div>
+
+  <div class="flower flower5">
+    <img src="./assets/images/icone.png">
+  </div>
+
+  <div class="flower flower6">
+    <img src="./assets/images/icone.png">
+  </div>
+
+  <main class="container-principal">
+    <h1>Configurações</h1>
+    <div class="container-lista-configuracoes">
+      <div class="configuracoes-item">
+        <div class="configuracoes-item-titulo notificacoes-titulo">
+          <img src="./assets/icons/sino-notificacao.svg">
+          <h3>Notificações</h3>
+          <button id="setaAbaixo1">
+            <img src="./assets/icons/seta_esquerda.png">
+          </button>      
+        </div>
+        <ul class="configuracoes-lista-subitens lista-notificacoes">
+          <li class="configuracoes-subitem">
+            <img src="./assets/icons/gota_agua2.png">
+            <h4>Hidratação</h4>   
+            <label class="switch">
+              <input type="checkbox" class="on-off-button">
+              <span class="slider"></span>
+            </label>
+          </li>
+          <li class="configuracoes-subitem">
+            <img src="./assets/icons/diu.png">
+            <h4>Contraceptivo</h4>
+            <label class="switch">
+              <input type="checkbox" class="on-off-button">
+              <span class="slider"></span>
+            </label>
+          </li>
+          <li class="configuracoes-subitem">
+            <img src="./assets/icons/menstruation.png">
+            <h4>Início do Ciclo</h4>
+            <label class="switch">
+              <input type="checkbox" class="on-off-button">
+              <span class="slider"></span>
+            </label>
+          </li>
+          <li class="configuracoes-subitem">
+            <img src="./assets/icons/flower.png">
+            <h4>Janela Fértil</h4>
+            <label class="switch">
+              <input type="checkbox" class="on-off-button">
+              <span class="slider"></span>
+            </label>        
+          </li>
+          <li class="configuracoes-subitem">
+            <img src="./assets/icons/fertilization.png">
+            <h4>Ovulação</h4>
+            <label class="switch">
+              <input type="checkbox" class="on-off-button">
+              <span class="slider"></span>
+            </label>        
+          </li>
+        </ul>
+      </div>
+
+      <div class="configuracoes-item">
+        <div class="configuracoes-item-titulo">
+          <img src="./assets/icons/pregnant.png">
+          <h3>Modo Gestante</h3>      
+        </div>
+        
+      </div>
+
+      <div class="configuracoes-item">
+        <div class="configuracoes-item-titulo privacidade-titulo">
+          <img src="./assets/icons/private-account.png">
+          <h3>Privacidade</h3>
+          <button id="setaAbaixo2">
+            <img src="./assets/icons/seta_esquerda.png">
+          </button>             
+        </div>
+
+        <ul class="configuracoes-lista-subitens lista-privacidade">
+          <li class="configuracoes-subitem">
+            <img src="./assets/icons/olhoprivado.png">
+            <h4>Ocultar informações sensíveis</h4>   
+            <label class="switch">
+              <input type="checkbox" class="on-off-button">
+              <span class="slider"></span>
+            </label>
+          </li>
+          <li class="configuracoes-subitem no-button-item">
+            <img src="./assets/icons/file-export.png">
+            <h4>Exportar dados</h4>
+
+          </li>
+          <li class="configuracoes-subitem no-button-item">
+            <img src="./assets/icons/trash.png">
+            <h4>Apagar Conta</h4>
+          </li>
+          
+        </ul>        
+      </div>
+
+      <div class="configuracoes-item">
+        <div class="configuracoes-item-titulo seguranca-titulo">
+          <img src="./assets/icons/cadeado.png">
+          <h3>Segurança</h3>
+          <button id="setaAbaixo2">
+            <img src="./assets/icons/seta_esquerda.png">
+          </button>             
+
+        </div>
+        <ul class="configuracoes-lista-subitens lista-seguranca">
+          <li class="configuracoes-subitem no-button-item">
+            <img src="./assets/icons/password-change.png">
+            <h4>Alterar Senha</h4>   
+          </li>
+          <li class="configuracoes-subitem no-button-item">
+            <img src="./assets/icons/two-factor-authentication.png">
+            <h4>Autenticação de dois fatores</h4>
+          </li>
+          <li class="configuracoes-subitem no-button-item">
+            <img src="./assets/icons/logout.png">
+            <h4>Sair da Conta</h4>
+          </li>          
+        </ul>  
+
+      </div>
+
+    </div>    
+  </main>
+
+  <!-- JS -->
   <script src="./js/configuracoes.js"></script>
 
 </body>

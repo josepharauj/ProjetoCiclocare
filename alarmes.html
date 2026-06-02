@@ -82,22 +82,33 @@
 
   <a href="configuracoes.html">
     <i class="fa-solid fa-gear"></i>
-  </a>  
+  </a>
 
-  <i class="fa-regular fa-bell bell-icon"></i>
+  <div class="bell-container">
+      <i class="fa-solid fa-bell bell-icon"></i>
+      <span id="notification-badge">
+          0
+      </span>
 
-  <!-- USUÁRIO -->
-  <div class="usuario">
+  </div>
 
-    <!-- BOTÃO PERFIL -->
-    <div class="usuario-info">
+    <!-- USUÁRIO -->
+    <div class="usuario">
 
-      <img src="https://i.pravatar.cc/100" alt="Usuária">
+        <div class="usuario-info">
 
-      <span>Olá, Mari</span>
+            <img
+                    src="https://i.pravatar.cc/100"
+                    alt="Usuária"
+            >
 
-    </div>
+            <span id="nomeUsuario">
 
+        Olá
+
+      </span>
+
+        </div>
     <!-- DROPDOWN PERFIL -->
     <div class="profile-dropdown">
 
@@ -132,35 +143,203 @@
 
     <!-- SIDEBAR NOTIFICAÇÕES -->
 
-<div class="notification-sidebar">
+  <div class="notification-sidebar">
 
-  <div class="sidebar-header">
+      <div class="sidebar-header">
 
-    <h2>Notificações</h2>
+          <h2>Notificações</h2>
 
-    <i class="fa-solid fa-xmark close-sidebar"></i>
+          <i class="fa-solid fa-xmark close-sidebar"></i>
 
-  </div>
+      </div>
 
-  <div class="notification-item">
+      <!-- LISTA DINÂMICA -->
 
-    <p>💧 Hora de beber água</p>
+      <div class="notification-list">
 
-  </div>
-
-  <div class="notification-item">
-
-    <p>🌸 Seu ciclo começa amanhã</p>
+      </div>
 
   </div>
 
-  <div class="notification-item">
+  <div class="main-dashboard">
 
-    <p>💊 Tomar contraceptivo às 20h</p>
+      <!-- TÍTULO -->
+      <header class="dashboard-header">
 
+          <h1>Alarmes</h1>
+
+      </header>
+
+      <!-- CONTAINER -->
+      <div class="columns-container">
+
+          <!-- COLUNA ESQUERDA -->
+          <section class="column column-left">
+
+              <div class="card-box">
+
+                  <h2>Novo Alarme</h2>
+
+                  <form id="alarm-form">
+
+                      <!-- TIPO -->
+                      <div class="input-group">
+
+                          <label for="alarm-type">
+                              Tipo de Alarme:
+                          </label>
+
+                          <select id="alarm-type" required>
+
+                              <option value="" disabled selected>
+                                  Selecione...
+                              </option>
+
+                              <option value="contraceptivo">
+                                  Contraceptivo
+                              </option>
+
+                              <option value="medicamento">
+                                  Medicamento
+                              </option>
+                          </select>
+                      </div>
+
+                      <!-- NOME -->
+                      <div class="input-group">
+
+                          <label for="alarm-name">
+                              Nome:
+                          </label>
+
+                          <input
+                                  type="text"
+                                  id="alarm-name"
+                                  placeholder="Ex: Anticoncepcional, Dipirona..."
+                                  required
+                          >
+                      </div>
+
+                      <!-- FREQUÊNCIA -->
+                      <div class="input-group">
+
+                          <label for="alarm-frequency">
+                              Lembrar a cada:
+                          </label>
+
+                          <select id="alarm-frequency" required>
+                              <option value="" disabled selected>
+                                  Selecione...
+                              </option>
+
+                              <option value="4">
+                                  4 horas
+                              </option>
+
+                              <option value="6">
+                                  6 horas
+                              </option>
+
+                              <option value="8">
+                                  8 horas
+                              </option>
+
+                              <option value="12">
+                                  12 horas
+                              </option>
+
+                              <option value="24">
+                                  24 horas
+                              </option>
+
+                          </select>
+                      </div>
+
+                      <!-- HORA INÍCIO -->
+                      <div class="input-group">
+
+                          <label for="alarm-start">
+                              Hora de Início:
+                          </label>
+
+                          <select id="alarm-start" required>
+
+                              <option value="" disabled selected>
+                                  Selecione...
+                              </option>
+
+                              <option value="00:00">00:00</option>
+                              <option value="01:00">01:00</option>
+                              <option value="02:00">02:00</option>
+                              <option value="03:00">03:00</option>
+                              <option value="04:00">04:00</option>
+                              <option value="05:00">05:00</option>
+                              <option value="06:00">06:00</option>
+                              <option value="07:00">07:00</option>
+                              <option value="08:00">08:00</option>
+                              <option value="09:00">09:00</option>
+                              <option value="10:00">10:00</option>
+                              <option value="11:00">11:00</option>
+                              <option value="12:00">12:00</option>
+                              <option value="13:00">13:00</option>
+                              <option value="14:00">14:00</option>
+                              <option value="15:00">15:00</option>
+                              <option value="16:00">16:00</option>
+                              <option value="17:00">17:00</option>
+                              <option value="18:00">18:00</option>
+                              <option value="19:00">19:00</option>
+                              <option value="20:00">20:00</option>
+                              <option value="21:00">21:00</option>
+                              <option value="22:00">22:00</option>
+                              <option value="23:00">23:00</option>
+
+                          </select>
+
+                      </div>
+
+                      <!-- OBSERVAÇÃO -->
+                      <div class="input-group">
+
+                          <label for="alarm-note">
+                              Observação:
+                          </label>
+
+                          <input
+                                  type="text"
+                                  id="alarm-note"
+                                  placeholder="Opcional"
+                          >
+                      </div>
+
+                      <!-- BOTÃO -->
+                      <button type="submit" class="btn-save">
+
+                          Ativar Alarme
+
+                      </button>
+                  </form>
+              </div>
+          </section>
+
+          <!-- COLUNA DIREITA -->
+          <section class="column column-right">
+
+              <div class="card-box">
+
+                  <h2>Alarmes Ativos</h2>
+
+                  <div id="alarm-list">
+
+                      <p class="empty-msg">
+
+                          Nenhum alarme ativo.
+
+                      </p>
+                  </div>
+              </div>
+          </section>
+      </div>
   </div>
-
-</div>
 
 <!-- JS -->
   <script src="./js/alarmes.js"></script>
